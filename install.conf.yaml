@@ -1,0 +1,18 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.tmux.conf: tmux.conf
+    ~/.zshrc: zshrc
+    ~/.gitignore: gitignore
+    ~/.config/nvim: nvim
+    #~/.vimrc: vimrc
+
+- shell:
+    # - ["git submodule update --init --recursive, Installing submodules", "Installing submodules"]
+  - ["mkdir -p ~/downloads", "Creating downloads directory"]
+  - ["mkdir -p ~/src", "Creating source directory"]

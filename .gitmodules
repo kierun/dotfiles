@@ -1,0 +1,6 @@
+[submodule "nvim/dein.vim/repos/github.com/Shougo/dein.vim"]
+	path = nvim/dein.vim/repos/github.com/Shougo/dein.vim
+	url = https://github.com/Shougo/dein.vim
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot

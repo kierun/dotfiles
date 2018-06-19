@@ -1,0 +1,11 @@
+*.swo
+*.swp
+.autoenv.zsh
+.autoenv_leave.zsh
+.eggs
+.env
+.envrc
+.ropeproject/
+.tox
+.tox_extra_requirements.txt
+tags
