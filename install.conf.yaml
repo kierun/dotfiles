@@ -4,6 +4,12 @@
 
 - clean: ['~']
 
+- shell:
+    # - ["git submodule update --init --recursive, Installing submodules", "Installing submodules"]
+  - ["mkdir -p ~/downloads", "Creating downloads directory"]
+  - ["mkdir -p ~/src", "Creating source directory"]
+  - ["mkdir -p ~/.i3", "Creating I3 configuration directory"]
+
 - link:
     ~/.dotfiles: ''
     ~/.tmux.conf: tmux.conf
@@ -12,9 +18,3 @@
     ~/.config/nvim: nvim
     ~/.i3/config: i3.config
     #~/.vimrc: vimrc
-
-- shell:
-    # - ["git submodule update --init --recursive, Installing submodules", "Installing submodules"]
-  - ["mkdir -p ~/downloads", "Creating downloads directory"]
-  - ["mkdir -p ~/src", "Creating source directory"]
-  - ["mkdir -p ~/.i3", "Creating I3 configuration directory"]
