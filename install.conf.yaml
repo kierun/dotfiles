@@ -9,6 +9,7 @@
   - ["mkdir -p ~/downloads", "Creating downloads directory"]
   - ["mkdir -p ~/src", "Creating source directory"]
   - ["mkdir -p ~/.i3", "Creating I3 configuration directory"]
+  - ["mkdir -p ~/.zsh", "Creating ZSH configuration directory"]
 
 - link:
     ~/.dotfiles: ''
@@ -17,4 +18,8 @@
     ~/.gitignore: gitignore
     ~/.config/nvim: nvim
     ~/.i3/config: i3.config
-    #~/.vimrc: vimrc
+    ~/.zsh/git-flow-completion.zsh: zsh/git-flow-completion.zsh
+    ~/.zsh/python_virtual_env.zsh: zsh/python_virtual_env.zsh
+    ~/.zsh/zsh-autosuggestions: zsh/zsh-autosuggestions
+    ~/.zsh/zsh-git-prompt: zsh/zsh-git-prompt
+    ~/.zsh/zsh-syntax-highlighting: zsh/zsh-syntax-highlighting

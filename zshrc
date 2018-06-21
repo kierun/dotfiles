@@ -40,7 +40,7 @@ key[PageDown]=${terminfo[knp]}
 
 ### Prompt
 autoload -U colors && colors
-source $HOME/.zsh/git-prompt/zshrc.sh
+source $HOME/.zsh/zsh-git-prompt/zshrc.sh
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"
 ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
@@ -124,17 +124,20 @@ alias grep="grep -n --colour=auto"
 alias clean='rm -rf ./build ./*.egg-info *.link_built *.whl **/*.pyc'
 alias apg='apg -m 16 -a 0 -t'
 
-## Local data
-if [[ -e ~/.zsh/local ]]
-then source ~/.zsh/local
-fi
-
 ## Function to start tmux
 mux () {tmux -2 new -s $1 || tmux attach -t $1}
 
-### Pretty
-uname -a
-uptime
-vmstat -S M
-
+# A command-line fuzzy finder -- https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Fish?                                                                         
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh               
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# direnv
+eval "$(direnv hook zsh)"
+
+## Local data: MUST BE LAST!!!
+if [[ -e ~/.zsh/local ]]
+then source ~/.zsh/local
+fi
