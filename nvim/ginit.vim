@@ -9,7 +9,7 @@ set ruler
 "GuiFont! InconsolataForPowerline Nerd Font:h10
 "GuiFont! PragmataPro Nerd Font:h9
 "GuiFont! MPlus Nerd Font:h9
-GuiFont! PragmataProMono NF:h10
+GuiFont! PragmataProMono NF:h9
 "GuiFont! Iosevka Nerd Font:h9
 "
 if @% == ""
