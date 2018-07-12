@@ -35,6 +35,37 @@ call dein#add('autozimu/LanguageClient-neovim', {
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
 
+" NCM2, formerly known as nvim-completion-manager, is a slim, fast hackable
+" completion framework, for neovim.
+" https://github.com/ncm2/ncm2
+call dein#add('ncm2/ncm2')
+" ncm2 requires nvim-yarp
+call dein#add('roxma/nvim-yarp')
+    " enable ncm2 for all buffer
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+
+    " note that must keep noinsert in completeopt, the others is optional
+    set completeopt=noinsert,menuone,noselect
+    
+    " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+    inoremap <c-c> <ESC>
+
+    " When the <Enter> key is pressed while the popup menu is visible, it only
+    " hides the menu. Use this mapping to close the menu and also start a new
+    " line.
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>" : "\<CR>")
+
+    " Use <TAB> to select the popup menu:
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Some completion sources…
+call dein#add('ncm2/ncm2-bufword')
+call dein#add('ncm2/ncm2-tmux')
+call dein#add('ncm2/ncm2-path')
+call dein#add('ncm2/ncm2-jedi')
+call dein#add('ncm2/ncm2-pyclang')
+
 " Vim airline.
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-airline.git')
@@ -44,10 +75,6 @@ call dein#add('bling/vim-airline.git')
   let g:airline#extensions#tabline#show_tabs = 1
   let g:airline#extensions#tabline#show_buffers = 1
   let airline#extensions#tabline#middle_click_preserves_windows = 1
-
-" Supertab.
-call dein#add("ervandew/supertab.git")
-  let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " NERDTree for project drawer
 call dein#add("scrooloose/nerdtree.git")
@@ -65,7 +92,7 @@ call dein#add("Xuyuanp/nerdtree-git-plugin")
 
 " gundo for awesome undo tree visualization
 call dein#add("sjl/gundo.vim.git")
-  nnoremap <leader>h :GundoToggle<CR>
+  nmap <F3> :GundoToggle<CR>
 
 " Vim flake 8.
 "call dein#add("nvie/vim-flake8")
@@ -78,23 +105,6 @@ call dein#add("majutsushi/tagbar.git")
   let g:tagbar_autofocus = 1
   nnoremap <leader>rt :!ctags --extra=+f -R *<CR><CR>
   nnoremap <leader>. :TagbarToggle<CR>
-
-" Jedi… https://github.com/davidhalter/jedi
-"call dein#add("davidhalter/jedi")
-
-" Jedi-vim
-"call dein#add("davidhalter/jedi-vim")
-"  let g:jedi#show_call_signatures = "0"
-
-" Deoplete is the abbreviation of 'dark powered neo-completion'!
-call dein#add("Shougo/deoplete.nvim", { 'do': ':UpdateRemotePlugins' } )
-    let g:deoplete#enable_at_startup = 1
-    source $HOME/.config/nvim/deoplete.vim
-"call dein#add("zchee/deoplete-jedi")
-
-"call dein#add('tweekmonster/deoplete-clang2')
-"  let g:deoplete#sources#clang#libclang_path="/usr/lib64/llvm/libclang.so"
-"  let g:deoplete#sources#clang_header="/usr/include/clang"
 
 " C++/Clang/LLVM/LLDB
 "call dein#add("critiqjo/lldb.nvim")
@@ -122,9 +132,6 @@ call dein#add("airblade/vim-gitgutter")
 " vim fetch.
 call dein#add("kopischke/vim-fetch")
 
-" tabular.
-"call dein#add("godlygeek/tabular")
-
 " Vim easy align: https://github.com/junegunn/vim-easy-align
 call dein#add("junegunn/vim-easy-align")
     " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -148,22 +155,6 @@ call dein#add("ryanoasis/vim-devicons")
 
 " Vim buffer kill…
 call dein#add("qpkorr/vim-bufkill")
-
-" Dark powered asynchronous unite all interfaces for Neovim/Vim8
-"call dein#add("Shougo/denite.nvim")
-
-" Python mode: https://github.com/python-mode/python-mode
-" call dein#add("python-mode/python-mode")
-"     nnoremap <space> za
-"     let g:pymode = 1
-"     let g:pymode_python = 'python3'
-"     let g:pymode_lint_checkers = ['flake8', 'pep8', 'mccabe']
-"     " let g:pymode_lint_checkers = ['flake8', 'pep8', 'mccabe', 'pep257']
-"     let g:pymode_rope = 1
-"     let g:pymode_rope_completion = 1
-"     let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'sys']
-"     let g:pymode_rope_autoimport_import_after_complete = 1
-"     autocmd FileType python setlocal omnifunc=RopeCompleteFunc
 
 " FZF: https://github.com/junegunn/fzf.vim
 call dein#add("junegunn/fzf.vim")
@@ -257,16 +248,13 @@ nnoremap <leader>g gqip
 vnoremap <leader>g gqip
 
 " Fixed width!
-autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,bzrlog,rst,gitcommit set textwidth=78
+autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit set textwidth=78
 
 " No spelling on YAML files… I mean, really?
 autocmd FileType yaml set nospell
 
 " Neovim-qt Guifont command
 command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
-
-" Set the font.
-Guifont Terminess Powerline:h8
 
 " Auto save.
 " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
@@ -275,5 +263,3 @@ set autowriteall
 
 " Grovey & Jenkinsfile…
 au BufNewFile,BufRead Jenkinsfile setf groovy    
-
-" EOF
