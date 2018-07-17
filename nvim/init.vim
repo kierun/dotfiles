@@ -66,6 +66,21 @@ call dein#add('ncm2/ncm2-path')
 call dein#add('ncm2/ncm2-jedi')
 call dein#add('ncm2/ncm2-pyclang')
 
+" NCM2, Clang, and C++ … 'cause it's SPECIAL!
+call dein#add('ncm2/ncm2-pyclang')
+
+    " Path to directory where libclang.so can be found ← Make sure you create it
+    " and sym link it if the lib is somewhere else on your system. Yeah, Fedora
+    " and CentOS put it in different places because fuck you, that's why.
+    let g:ncm2_pyclang#library_path = '/home/yann/llvm/lib'
+    " a list of relative paths for compile_commands.json
+    let g:ncm2_pyclang#database_path = [
+                \ 'compile_commands.json',
+                \ 'build/compile_commands.json'
+                \ ]
+    " Goto Declaration
+    autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
+
 " Vim airline.
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('bling/vim-airline.git')
