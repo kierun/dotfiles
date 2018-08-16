@@ -64,7 +64,6 @@ call dein#add('ncm2/ncm2-bufword')
 call dein#add('ncm2/ncm2-tmux')
 call dein#add('ncm2/ncm2-path')
 call dein#add('ncm2/ncm2-jedi')
-call dein#add('ncm2/ncm2-pyclang')
 
 " NCM2, Clang, and C++ … 'cause it's SPECIAL!
 call dein#add('ncm2/ncm2-pyclang')
