@@ -25,3 +25,4 @@
     ~/.zsh/zsh-git-prompt: zsh/zsh-git-prompt
     ~/.zsh/zsh-syntax-highlighting: zsh/zsh-syntax-highlighting
     ~/.mailcap: mailcap
+    ~/bin/mypass.py: mypass.py
