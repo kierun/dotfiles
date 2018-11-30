@@ -123,13 +123,13 @@ call dein#add("majutsushi/tagbar.git")
 " C++/Clang/LLVM/LLDB
 "call dein#add("critiqjo/lldb.nvim")
 
-" Neo make.
-call dein#add("benekastah/neomake")
-  autocmd! BufWritePost * Neomake
-"  let g:neomake_cpp_enable_markers=['clang']
-"  let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
-  let g:neomake_python_enabled_makers = ['pep8', 'flake8', 'pylama', 'python']
-  let g:neomake_airline = 1
+" " Neo make.
+" call dein#add("benekastah/neomake")
+"   autocmd! BufWritePost * Neomake
+" "  let g:neomake_cpp_enable_markers=['clang']
+" "  let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
+"   let g:neomake_python_enabled_makers = ['pep8', 'flake8', 'pylama', 'python']
+"   let g:neomake_airline = 1
 
 " Python folding.
 call dein#add("tmhedberg/SimpylFold")

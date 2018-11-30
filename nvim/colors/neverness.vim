@@ -153,3 +153,9 @@ hi NeomakeErrorSign     ctermfg=160 ctermbg=black guibg=#000000 guifg=#ff0000
 hi NeomakeWarningSign   ctermfg=172 ctermbg=black guibg=#000000 guifg=#ffa500
 hi NeomakeMessageSign   ctermfg=99 ctermbg=black guibg=#000000 guifg=#4682b4
 hi NeomakeInfoSign      ctermfg=63 ctermbg=black guibg=#000000 guifg=#61a181
+
+" LanguageClient-neovim
+hi ALEErrorSign    ctermfg=160 ctermbg=black guibg=#000000 guifg=#ff0000
+hi ALEWarningSign  ctermfg=172 ctermbg=black guibg=#000000 guifg=#ffa500
+hi ALEInfoSign     ctermfg=99 ctermbg=black guibg=#000000 guifg=#4682b4
+hi ALEInfoSign     ctermfg=63 ctermbg=black guibg=#000000 guifg=#61a181
