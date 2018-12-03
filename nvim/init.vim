@@ -173,6 +173,10 @@ call dein#add("qpkorr/vim-bufkill")
 " FZF: https://github.com/junegunn/fzf.vim
 call dein#add("junegunn/fzf.vim")
 
+" Plugin for vim to enable opening a file in a given line 
+" https://github.com/bogado/file-line
+call dein#add('bogado/file-line')
+
 " All done.
 call dein#end()
 
