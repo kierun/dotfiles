@@ -1,0 +1,4 @@
+include "%L"
+
+<Multi_key> + <Z> + <Z> : "ℤ" # Blackboard bold Z (set of integers)
+<Multi_key> + <i> + <i> : "⸮" # Irony mark.

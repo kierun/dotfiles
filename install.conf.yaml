@@ -26,3 +26,4 @@
     ~/.zsh/zsh-syntax-highlighting: zsh/zsh-syntax-highlighting
     ~/.mailcap: mailcap
     ~/bin/mypass.py: mypass.py
+    ~/.XCompose: XCompose
