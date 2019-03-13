@@ -7,7 +7,10 @@
 .eggs
 .env
 .envrc
+.mutmut-cache
+.mypy_cache/
 .ropeproject/
 .tox
 .tox_extra_requirements.txt
+.vim
 tags
