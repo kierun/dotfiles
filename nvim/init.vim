@@ -24,10 +24,12 @@ let g:dein#install_log_filename=expand("~/.cache/dein/dein.log")
 " https://github.com/autozimu/LanguageClient-neovim
 " https://github.com/palantir/python-language-server
 call dein#add('autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
 \ } )
-
+    let g:LanguageClient_loggingLevel = 'INFO'
+    let g:LanguageClient_loggingFile =  expand('~/log/LanguageClient.log')
+    let g:LanguageClient_serverStderr = expand('~/log/LanguageServer.log')
     let g:LanguageClient_autoStart = 1
     let g:LanguageClient_serverCommands = {
         \ 'python': ['pyls', '-v'] }
