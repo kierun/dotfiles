@@ -36,6 +36,7 @@ call dein#add('autozimu/LanguageClient-neovim', {
     nnoremap <silent> H :call LanguageClient_textDocument_hover()<CR>
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
+    let g:LanguageClient_useFloatingHover = 1
 
 " NCM2, formerly known as nvim-completion-manager, is a slim, fast hackable
 " completion framework, for neovim.
