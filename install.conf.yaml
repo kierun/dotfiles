@@ -28,3 +28,4 @@
     ~/bin/mypass.py: mypass.py
     ~/bin/glyph.py: glyph.py
     ~/.XCompose: XCompose
+    ~/.startup.py: startup.py
