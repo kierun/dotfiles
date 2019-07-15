@@ -6,7 +6,5 @@ include "%L"
 <Multi_key> + <j> + <j> : "↓" # Down arrow.
 <Multi_key> + <k> + <k> : "↑" # Up arrow.
 <Multi_key> + <l> + <l> : "→" # Right arrow.
-<Multi_key> + <l> + <l> : "→" # Right arrow.
-<Multi_key> + <l> + <l> : "→" # Right arrow.
 <Multi_key> + <1> + <1> : "☺" # Happy.
 <Multi_key> + <2> + <2> : "☹" # Sad.
