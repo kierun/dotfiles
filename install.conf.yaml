@@ -27,5 +27,6 @@
     ~/.mailcap: mailcap
     ~/bin/mypass.py: mypass.py
     ~/bin/glyph.py: glyph.py
+    ~/bin/done.bash: done.bash
     ~/.XCompose: XCompose
     ~/.startup.py: startup.py
