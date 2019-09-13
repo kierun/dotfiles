@@ -20,6 +20,9 @@ else
     GuiFont! PragmataProMono NF:h9
 endif
 
+" No ugly tab line in windows!
+GuiTabline 0
+
 "
 if @% == ""
   bd
