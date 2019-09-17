@@ -141,7 +141,16 @@ call dein#add("tmhedberg/SimpylFold")
   nnoremap <space> za
 
 " CSS colours.
-call dein#add("ap/vim-css-color")
+"call dein#add("ap/vim-css-color")
+
+" https://github.com/RRethy/vim-hexokinase
+call dein#add('rrethy/vim-hexokinase', { 'build': 'make hexokinase' })
+let g:Hexokinase_highlighters = [ 'virtual' ]
+let g:Hexokinase_optInPatterns = ['full_hex', \
+                                  'triple_hex',\
+                                  'rgb',\
+                                  'rgba',\
+                                  'colour_names']
 
 " Git gutter.
 call dein#add("airblade/vim-gitgutter")
