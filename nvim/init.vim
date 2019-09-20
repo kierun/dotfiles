@@ -185,6 +185,16 @@ call dein#add("junegunn/fzf.vim")
 " https://github.com/bogado/file-line
 call dein#add('bogado/file-line')
 
+" C++ highlighting: https://github.com/octol/vim-cpp-enhanced-highlight
+call dein#add('octol/vim-cpp-enhanced-highlight')
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let g:cpp_no_function_highlight = 1
+
+
 " All done.
 call dein#end()
 
