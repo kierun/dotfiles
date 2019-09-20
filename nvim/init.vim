@@ -32,7 +32,9 @@ call dein#add('autozimu/LanguageClient-neovim', {
     let g:LanguageClient_serverStderr = expand('~/log/LanguageServer.log')
     let g:LanguageClient_autoStart = 1
     let g:LanguageClient_serverCommands = {
-        \ 'python': ['pyls', '-v'] }
+        \ 'python': ['pyls', '-v'],
+        \ 'cpp': ['clangd'],
+        \ }
     nnoremap <silent> H :call LanguageClient_textDocument_hover()<CR>
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
