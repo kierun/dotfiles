@@ -14,11 +14,12 @@ endfunction
 "GuiFont! PragmataPro Nerd Font:h9
 "GuiFont! MPlus Nerd Font:h9
 "GuiFont! Iosevka Nerd Font:h9
-if IsOnSomeParticularMachine('jagupard')
-    GuiFont! PragmataProMono NF:h10
-else
-    GuiFont! PragmataProMono NF:h9
-endif
+" if IsOnSomeParticularMachine('jagupard')
+"     GuiFont! PragmataPro Nerd Font Mono:h10
+" else
+"     GuiFont! PragmataPro Nerd Font Mono:h10
+" endif
+GuiFont! PragmataPro Nerd Font Mono:h10
 
 " No ugly tab line in windows!
 GuiTabline 0
