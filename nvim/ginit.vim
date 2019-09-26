@@ -4,7 +4,7 @@ set colorcolumn=81
 set ruler
 
 function! IsOnSomeParticularMachine(hostname)
-    return match($HOST, a:hostname) >= 0
+    return match(system("echo -n $HOST"), a:hostname) >= 0
 endfunction
 
 " Fonts.
