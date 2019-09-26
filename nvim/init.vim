@@ -23,6 +23,10 @@ let g:dein#install_log_filename=expand("~/.cache/dein/dein.log")
 " LSP: 
 " https://github.com/autozimu/LanguageClient-neovim
 " https://github.com/palantir/python-language-server
+"
+" When pylint and co stop working, it's Python Language Server's not being set
+" up properly. Too often have I looked for this shit.
+"
 call dein#add('autozimu/LanguageClient-neovim', {
     \ 'rev': 'next',
     \ 'build': 'bash install.sh',
