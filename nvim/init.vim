@@ -27,6 +27,9 @@ let g:dein#install_log_filename=expand("~/.cache/dein/dein.log")
 " When pylint and co stop working, it's Python Language Server's not being set
 " up properly. Too often have I looked for this shit.
 "
+" Run:
+"   pip install python-language-server
+"   pip install 'python-language-server[all]'
 call dein#add('autozimu/LanguageClient-neovim', {
     \ 'rev': 'next',
     \ 'build': 'bash install.sh',
