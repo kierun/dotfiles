@@ -47,50 +47,54 @@ call dein#add('autozimu/LanguageClient-neovim', {
     nnoremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
     let g:LanguageClient_useFloatingHover = 1
 
-" NCM2, formerly known as nvim-completion-manager, is a slim, fast hackable
-" completion framework, for neovim.
-" https://github.com/ncm2/ncm2
-call dein#add('ncm2/ncm2')
-" ncm2 requires nvim-yarp
-call dein#add('roxma/nvim-yarp')
-    " enable ncm2 for all buffer
-    autocmd BufEnter * call ncm2#enable_for_buffer()
+" Coc is an intellisense engine for vim8 & neovim.
+" https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
+call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
 
-    " note that must keep noinsert in completeopt, the others is optional
-    set completeopt=noinsert,menuone,noselect
-    
-    " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-    inoremap <c-c> <ESC>
-
-    " When the <Enter> key is pressed while the popup menu is visible, it only
-    " hides the menu. Use this mapping to close the menu and also start a new
-    " line.
-    inoremap <expr> <CR> (pumvisible() ? "\<c-y>" : "\<CR>")
-
-    " Use <TAB> to select the popup menu:
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Some completion sources…
-call dein#add('ncm2/ncm2-bufword')
-call dein#add('ncm2/ncm2-tmux')
-call dein#add('ncm2/ncm2-path')
-call dein#add('ncm2/ncm2-jedi')
-
-" NCM2, Clang, and C++ … 'cause it's SPECIAL!
-call dein#add('ncm2/ncm2-pyclang')
-
-    " Path to directory where libclang.so can be found ← Make sure you create it
-    " and sym link it if the lib is somewhere else on your system. Yeah, Fedora
-    " and CentOS put it in different places because fuck you, that's why.
-    let g:ncm2_pyclang#library_path = '/home/yann/llvm/lib'
-    " a list of relative paths for compile_commands.json
-    let g:ncm2_pyclang#database_path = [
-                \ 'compile_commands.json',
-                \ 'build/compile_commands.json'
-                \ ]
-    " Goto Declaration
-    autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
+" " NCM2, formerly known as nvim-completion-manager, is a slim, fast hackable
+" " completion framework, for neovim.
+" " https://github.com/ncm2/ncm2
+" call dein#add('ncm2/ncm2')
+" " ncm2 requires nvim-yarp
+" call dein#add('roxma/nvim-yarp')
+"     " enable ncm2 for all buffer
+"     autocmd BufEnter * call ncm2#enable_for_buffer()
+" 
+"     " note that must keep noinsert in completeopt, the others is optional
+"     set completeopt=noinsert,menuone,noselect
+"     
+"     " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+"     inoremap <c-c> <ESC>
+" 
+"     " When the <Enter> key is pressed while the popup menu is visible, it only
+"     " hides the menu. Use this mapping to close the menu and also start a new
+"     " line.
+"     inoremap <expr> <CR> (pumvisible() ? "\<c-y>" : "\<CR>")
+" 
+"     " Use <TAB> to select the popup menu:
+"     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" 
+" " Some completion sources…
+" call dein#add('ncm2/ncm2-bufword')
+" call dein#add('ncm2/ncm2-tmux')
+" call dein#add('ncm2/ncm2-path')
+" call dein#add('ncm2/ncm2-jedi')
+" 
+" " NCM2, Clang, and C++ … 'cause it's SPECIAL!
+" call dein#add('ncm2/ncm2-pyclang')
+" 
+"     " Path to directory where libclang.so can be found ← Make sure you create it
+"     " and sym link it if the lib is somewhere else on your system. Yeah, Fedora
+"     " and CentOS put it in different places because fuck you, that's why.
+"     let g:ncm2_pyclang#library_path = '/home/yann/llvm/lib'
+"     " a list of relative paths for compile_commands.json
+"     let g:ncm2_pyclang#database_path = [
+"                 \ 'compile_commands.json',
+"                 \ 'build/compile_commands.json'
+"                 \ ]
+"     " Goto Declaration
+"     autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
 
 " Vim airline.
 call dein#add('vim-airline/vim-airline-themes')
