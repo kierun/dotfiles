@@ -50,6 +50,7 @@ call dein#add('autozimu/LanguageClient-neovim', {
 " Coc is an intellisense engine for vim8 & neovim.
 " https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
 call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
+  let g:airline#extensions#coc#enabled = 1
 
 " " NCM2, formerly known as nvim-completion-manager, is a slim, fast hackable
 " " completion framework, for neovim.
