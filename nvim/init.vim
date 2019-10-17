@@ -209,6 +209,9 @@ let g:cpp_concepts_highlight = 1
 let g:cpp_no_function_highlight = 1
 
 
+" Vim syntax for TOML: https://github.com/cespare/vim-toml
+call dein#add('cespare/vim-toml')
+
 " All done.
 call dein#end()
 
