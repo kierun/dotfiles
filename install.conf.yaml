@@ -30,3 +30,4 @@
     ~/bin/done.bash: done.bash
     ~/.XCompose: XCompose
     ~/.startup.py: startup.py
+    ~/.direnvrc: direnvrc
