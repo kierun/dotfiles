@@ -123,7 +123,7 @@ alias rmcore="find . -regex '.*core\.[0-9]*' -delete"
 alias rmpyc="find . -regex '.*\.pyc$' -delete"
 alias grep="grep -n --colour=auto"
 alias clean='rm -rf ./build ./*.egg-info *.link_built *.whl **/*.pyc'
-alias apg='apg -m 16 -a 0 -t'
+alias apg='apg -m 23 -a 0 -t -M NCSL'
 
 ## Function to start tmux
 mux () {tmux -2 new -s $1 || tmux attach -t $1}

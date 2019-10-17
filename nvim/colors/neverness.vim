@@ -135,7 +135,8 @@ hi def OL9 ctermfg=3 cterm=bold gui=bold guifg=#C6E2FF term=reverse
 
 " PMenu from Sam Grönblom <sgronblo@gmail.com>
 hi PmenuSel    ctermfg=Black ctermbg=Cyan      guifg=#000000 guibg=#87ceeb gui=none
-hi Pmenu       ctermfg=White ctermbg=DarkBlue  guifg=#000000 guibg=#4682b4 gui=none
+" hi Pmenu       ctermfg=White ctermbg=DarkBlue  guifg=#000000 guibg=#4682b4 gui=none
+hi Pmenu       ctermfg=White ctermbg=DarkBlue  guifg=#000000 guibg=#1b3246 gui=none
 hi PmenuSbar   ctermfg=White ctermbg=LightCyan guifg=#ffffff guibg=#848484 gui=none
 hi PmenuThumb  ctermfg=White ctermbg=DarkGreen guifg=#ffffff guibg=#87ceeb gui=none
 
@@ -159,3 +160,8 @@ hi ALEErrorSign    ctermfg=160 ctermbg=black guibg=#000000 guifg=#ff0000
 hi ALEWarningSign  ctermfg=172 ctermbg=black guibg=#000000 guifg=#ffa500
 hi ALEInfoSign     ctermfg=99 ctermbg=black guibg=#000000 guifg=#4682b4
 hi ALEInfoSign     ctermfg=63 ctermbg=black guibg=#000000 guifg=#61a181
+
+" COC
+hi CocWarningSign  ctermfg=Brown    guifg=#ff8c00
+hi CocInfoSign     ctermfg=Yellow   guifg=#ff8c00
+
