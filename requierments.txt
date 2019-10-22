@@ -15,6 +15,7 @@ pip-autoremove
 pipdeptree
 pipenv
 powerline-status
+pre-commit
 pydocstyle
 pyflakes
 pylint
