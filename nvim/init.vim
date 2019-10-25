@@ -2,7 +2,7 @@
 
 " Python
 let g:python3_host_prog="/home/yann/.pyenv/versions/neovim-3.7.4/bin/python"
-let g:python_host_prog="/home/yann/.pyenv/versions/neovim-2.7.5/bin/python2.7"
+let g:python_host_prog="/home/yann/.pyenv/versions/neovim-2.7.5/bin/python"
 
 " BEGIN dark powered Vim/Neovim plugin manager. ----------------------------
 " Run this command to update your plugins:
