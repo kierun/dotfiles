@@ -1,10 +1,10 @@
 include "%L"
 
-<Multi_key> + <Z> + <Z> : "ℤ" # Blackboard bold Z (set of integers)
-<Multi_key> + <i> + <i> : "⸮" # Irony mark.
-<Multi_key> + <h> + <h> : "←" # Left arrow.
-<Multi_key> + <j> + <j> : "↓" # Down arrow.
-<Multi_key> + <k> + <k> : "↑" # Up arrow.
-<Multi_key> + <l> + <l> : "→" # Right arrow.
-<Multi_key> + <1> + <1> : "☺" # Happy.
-<Multi_key> + <2> + <2> : "☹" # Sad.
+<Multi_key> <Z> <Z> : "ℤ" # Blackboard bold Z (set of integers)
+<Multi_key> <i> <i> : "⸮" # Irony mark.
+<Multi_key> <h> <h> : "←" # Left arrow.
+<Multi_key> <j> <j> : "↓" # Down arrow.
+<Multi_key> <k> <k> : "↑" # Up arrow.
+<Multi_key> <l> <l> : "→" # Right arrow.
+<Multi_key> <1> <1> : "☺" # Happy.
+<Multi_key> <2> <2> : "☹" # Sad.

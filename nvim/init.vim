@@ -1,8 +1,13 @@
 " Neovim configuration.
 
 " Python
-let g:python3_host_prog="/home/yann/.pyenv/versions/neovim-3.7.4/bin/python"
+" let g:python3_host_prog="/home/yann/.pyenv/versions/neovim-3.7.4/bin/python"
 let g:python_host_prog="/home/yann/.pyenv/versions/neovim-2.7.5/bin/python"
+if exists("$VIRTUAL_ENV")
+    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+else
+    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+endif
 
 " BEGIN dark powered Vim/Neovim plugin manager. ----------------------------
 " Run this command to update your plugins:
