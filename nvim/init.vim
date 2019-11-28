@@ -133,7 +133,7 @@ call dein#add("sjl/gundo.vim.git")
 " Vim flake 8.
 "call dein#add("nvie/vim-flake8")
 
-" Fugitive
+" Fugitive: https://github.com/tpope/vim-fugitive
 call dein#add("tpope/vim-fugitive")
 
 " Tagbar for navigation by tags using CTags
@@ -159,15 +159,12 @@ call dein#add("tmhedberg/SimpylFold")
   let g:SimpylFold_fold_import = 0
   nnoremap <space> za
 
-" CSS colours.
-"call dein#add("ap/vim-css-color")
-
 " https://github.com/RRethy/vim-hexokinase
 call dein#add('rrethy/vim-hexokinase', { 'build': 'make hexokinase' })
 let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
 
-" Git gutter.
+" Git gutter: https://github.com/airblade/vim-gitgutter
 call dein#add("airblade/vim-gitgutter")
 
 " vim fetch.
