@@ -16,6 +16,7 @@ pipdeptree
 pipenv
 powerline-status
 pre-commit
+pydeps
 pydocstyle
 pyflakes
 pylint
