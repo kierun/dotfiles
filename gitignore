@@ -4,6 +4,7 @@
 *.swp
 .autoenv.zsh
 .autoenv_leave.zsh
+.direnv
 .eggs
 .env
 .envrc
