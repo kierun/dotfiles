@@ -1,12 +1,12 @@
-layout_virtualenv() {
-  local venv_path="$1"
-  source ${venv_path}/bin/activate
-}
-
-layout_virtualenvwrapper() {
-  local venv_path="${WORKON_HOME}/$1"
-  layout_virtualenv $venv_path
-}
+# layout_virtualenv() {
+#   local venv_path="$1"
+#   source ${venv_path}/bin/activate
+# }
+# 
+# layout_virtualenvwrapper() {
+#   local venv_path="${WORKON_HOME}/$1"
+#   layout_virtualenv $venv_path
+# }
 
 layout_poetry() {
   if [[ ! -f pyproject.toml ]]; then
@@ -32,3 +32,17 @@ use_python() {
   fi
 }
 
+layout_virtualenv() {
+    local pyversion=$1
+    local pvenv=$2
+    if [ -n "$(which pyenv virtualenv)" ]; then
+        pyenv virtualenv --force --quiet ${pyversion} ${pvenv}-${pyversion}
+    fi
+    pyenv local --unset
+}
+
+layout_activate() {
+    if [ -n "$(which pyenv)" ]; then
+        source $(pyenv root)/versions/$1/bin/activate
+    fi
+}
