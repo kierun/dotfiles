@@ -3,10 +3,11 @@
 #   source ${venv_path}/bin/activate
 # }
 # 
-# layout_virtualenvwrapper() {
-#   local venv_path="${WORKON_HOME}/$1"
-#   layout_virtualenv $venv_path
-# }
+layout_virtualenvwrapper() {
+  local venv_path="${WORKON_HOME}/$1"
+  # layout_virtualenv $venv_path
+  source ${venv_path}/bin/activate
+}
 
 layout_poetry() {
   if [[ ! -f pyproject.toml ]]; then
