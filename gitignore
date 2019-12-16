@@ -10,9 +10,10 @@
 .envrc
 .mutmut-cache
 .mypy_cache/
+.python-version
 .ropeproject/
 .tox
 .tox_extra_requirements.txt
 .vim
-tags
 system
+tags
