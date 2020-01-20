@@ -31,3 +31,4 @@
     ~/.XCompose: XCompose
     ~/.startup.py: startup.py
     ~/.direnvrc: direnvrc
+    ~/.vale.inic: vale.ini

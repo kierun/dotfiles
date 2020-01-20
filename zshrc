@@ -9,8 +9,30 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/ygolanski/.zshrc'
 
+# Home brew.
+export PATH=~/bin:\
+~/.local/bin:\
+~/staging/bin:\
+~/.cargo/bin:\
+/usr/local/bin:\
+/usr/local/sbin:\
+/usr/bin:\
+/usr/sbin:\
+/bin:\
+/sbin:\
+/usr/lib/qt-3.3/bin:\
+/usr/kerberos/sbin:\
+/usr/kerberos/bin:\
+/usr/lib/ccache
+if test -d /home/linuxbrew/.linuxbrew; then
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+# Completion.
 autoload -Uz compinit
 compinit -i
+
 # End of lines added by compinstall
 #
 # http://www.rayninfo.co.uk/tips/zshtips.html
@@ -81,20 +103,6 @@ export LESSCHARSET=utf-8
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
 export PRINTER=HPPrinter
-export PATH=~/bin:\
-~/.local/bin:\
-~/staging/bin:\
-~/.cargo/bin:\
-/usr/local/bin:\
-/usr/local/sbin:\
-/usr/bin:\
-/usr/sbin:\
-/bin:\
-/sbin:\
-/usr/lib/qt-3.3/bin:\
-/usr/kerberos/sbin:\
-/usr/kerberos/bin:\
-/usr/lib/ccache
 #export NOSE_REDNOSE=1
 #export NOSE_DETAILED_ERRORS=1
 #export NOSE_NOCAPTURE=1
