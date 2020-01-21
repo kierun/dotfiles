@@ -24,10 +24,6 @@ export PATH=~/bin:\
 /usr/kerberos/sbin:\
 /usr/kerberos/bin:\
 /usr/lib/ccache
-if test -d /home/linuxbrew/.linuxbrew; then
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
 
 # Completion.
 autoload -Uz compinit
