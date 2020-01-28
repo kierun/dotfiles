@@ -106,6 +106,7 @@ nbr_cpu=`grep processor /proc/cpuinfo | wc -l`
 #export NUM_CPU=${nbr_cpu}
 export GTEST_COLOR=True
 export MANPATH=~/man:~/share/man:
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 ## Limits
 limit core 1024M
