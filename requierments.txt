@@ -7,8 +7,10 @@ devpi-server
 devpi-web
 icdiff
 ipython
+iredis
 isort
 meson
+mycli
 mypy
 pdbpp
 pip-autoremove
@@ -29,4 +31,3 @@ redis
 rope
 stevedore
 tmuxp
-yapf
