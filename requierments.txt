@@ -10,6 +10,7 @@ ipython
 iredis
 isort
 meson
+mock
 mycli
 mypy
 pdbpp
@@ -25,6 +26,10 @@ pylint
 pyls-black
 pyls-isort
 pyls-mypy
+pytest
+pytest-cov
+pytest-sugar
+pytest-xdist
 python-language-server
 python-language-server[all]
 redis
