@@ -20,7 +20,8 @@ lst = [u"\u263A",  # ☺
        u"死",      # Death / shi
        u"隻狼",    # One Armed Wolf / Sekirom
        u"\u266C",  # ♬ 
-       u"¯\_(ツ)_/¯"  # shrugs.
+       u"¯\_(ツ)_/¯",  # shrugs.
+       u"\u2623",   # ☣ Biohazard
        ]
 for c in lst:
     print(u'  {} '.format(c))
