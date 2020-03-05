@@ -16,6 +16,8 @@ endfunction
 "GuiFont! Iosevka Nerd Font:h9
 if IsOnSomeParticularMachine('jagupard')
     GuiFont! PragmataPro Nerd Font Mono:h10
+elseif IsOnSomeParticularMachine('nightwatch')
+    GuiFont! PragmataProMono Nerd Font:h9
 else
     GuiFont! PragmataPro Nerd Font Mono:h9
 endif
