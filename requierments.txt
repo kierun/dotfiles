@@ -9,6 +9,7 @@ icdiff
 ipython
 iredis
 isort
+khal
 meson
 mock
 mycli
