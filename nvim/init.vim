@@ -54,6 +54,11 @@ call dein#add('autozimu/LanguageClient-neovim', {
 
 " Coc is an intellisense engine for vim8 & neovim.
 " https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
+" Run:
+"   :CocInstall coc-python
+"   :CocInstall coc-go
+"   :CocInstall coc-json
+" to get Python and Go bindings.
 call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
   let g:airline#extensions#coc#enabled = 1
 
@@ -213,6 +218,11 @@ let g:cpp_no_function_highlight = 1
 
 " Vim syntax for TOML: https://github.com/cespare/vim-toml
 call dein#add('cespare/vim-toml')
+
+" Go
+" https://github.com/fatih/vim-go
+" Make sure to run :GoInstallBinaries as well.
+call dein#add('fatih/vim-go')
 
 " All done.
 call dein#end()
