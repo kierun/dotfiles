@@ -91,7 +91,6 @@ let airline#extensions#tabline#middle_click_preserves_windows = 1
 " Configure Conquer of Completions
 let g:coc_global_extensions = ["coc-json",
       \ "coc-python",
-      \ "coc-prettier",
       \ "coc-html",
       \ "coc-css",
       \ "coc-yaml",
