@@ -1,8 +1,13 @@
 " Neovim configuration.
 
 " Python
-let g:python3_host_prog="/home/yann/.virtualenvs/neovim/bin/python"
-let g:python_host_prog="/home/yann/.virtualenvs/neovim2/bin/python"
+" let g:python3_host_prog="/home/yann/.pyenv/versions/neovim-3.7.4/bin/python"
+let g:python_host_prog="/home/yann/.pyenv/versions/neovim-2.7.5/bin/python"
+if exists("$VIRTUAL_ENV")
+    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
+else
+    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
+endif
 
 " BEGIN dark powered Vim/Neovim plugin manager. ----------------------------
 " Run this command to update your plugins:
@@ -23,17 +28,84 @@ let g:dein#install_log_filename=expand("~/.cache/dein/dein.log")
 " LSP: 
 " https://github.com/autozimu/LanguageClient-neovim
 " https://github.com/palantir/python-language-server
+"
+" When pylint and co stop working, it's Python Language Server's not being set
+" up properly. Too often have I looked for this shit.
+"
+" Run:
+"   pip install python-language-server
+"   pip install 'python-language-server[all]'
 call dein#add('autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
 \ } )
-
+    let g:LanguageClient_loggingLevel = 'INFO'
+    let g:LanguageClient_loggingFile =  expand('~/log/LanguageClient.log')
+    let g:LanguageClient_serverStderr = expand('~/log/LanguageServer.log')
     let g:LanguageClient_autoStart = 1
     let g:LanguageClient_serverCommands = {
-        \ 'python': ['pyls', '-v'] }
+        \ 'python': ['pyls', '-v'],
+        \ 'cpp': ['clangd'],
+        \ }
     nnoremap <silent> H :call LanguageClient_textDocument_hover()<CR>
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
+    let g:LanguageClient_useFloatingHover = 1
+
+" Coc is an intellisense engine for vim8 & neovim.
+" https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
+" Run:
+"   :CocInstall coc-python
+"   :CocInstall coc-go
+"   :CocInstall coc-json
+" to get Python and Go bindings.
+call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
+  let g:airline#extensions#coc#enabled = 1
+
+" " NCM2, formerly known as nvim-completion-manager, is a slim, fast hackable
+" " completion framework, for neovim.
+" " https://github.com/ncm2/ncm2
+" call dein#add('ncm2/ncm2')
+" " ncm2 requires nvim-yarp
+" call dein#add('roxma/nvim-yarp')
+"     " enable ncm2 for all buffer
+"     autocmd BufEnter * call ncm2#enable_for_buffer()
+" 
+"     " note that must keep noinsert in completeopt, the others is optional
+"     set completeopt=noinsert,menuone,noselect
+"     
+"     " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+"     inoremap <c-c> <ESC>
+" 
+"     " When the <Enter> key is pressed while the popup menu is visible, it only
+"     " hides the menu. Use this mapping to close the menu and also start a new
+"     " line.
+"     inoremap <expr> <CR> (pumvisible() ? "\<c-y>" : "\<CR>")
+" 
+"     " Use <TAB> to select the popup menu:
+"     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" 
+" " Some completion sources…
+" call dein#add('ncm2/ncm2-bufword')
+" call dein#add('ncm2/ncm2-tmux')
+" call dein#add('ncm2/ncm2-path')
+" call dein#add('ncm2/ncm2-jedi')
+" 
+" " NCM2, Clang, and C++ … 'cause it's SPECIAL!
+" call dein#add('ncm2/ncm2-pyclang')
+" 
+"     " Path to directory where libclang.so can be found ← Make sure you create it
+"     " and sym link it if the lib is somewhere else on your system. Yeah, Fedora
+"     " and CentOS put it in different places because fuck you, that's why.
+"     let g:ncm2_pyclang#library_path = '/home/yann/llvm/lib'
+"     " a list of relative paths for compile_commands.json
+"     let g:ncm2_pyclang#database_path = [
+"                 \ 'compile_commands.json',
+"                 \ 'build/compile_commands.json'
+"                 \ ]
+"     " Goto Declaration
+"     autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
 
 " Vim airline.
 call dein#add('vim-airline/vim-airline-themes')
@@ -44,10 +116,6 @@ call dein#add('bling/vim-airline.git')
   let g:airline#extensions#tabline#show_tabs = 1
   let g:airline#extensions#tabline#show_buffers = 1
   let airline#extensions#tabline#middle_click_preserves_windows = 1
-
-" Supertab.
-call dein#add("ervandew/supertab.git")
-  let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " NERDTree for project drawer
 call dein#add("scrooloose/nerdtree.git")
@@ -65,12 +133,12 @@ call dein#add("Xuyuanp/nerdtree-git-plugin")
 
 " gundo for awesome undo tree visualization
 call dein#add("sjl/gundo.vim.git")
-  nnoremap <leader>h :GundoToggle<CR>
+  nmap <F3> :GundoToggle<CR>
 
 " Vim flake 8.
 "call dein#add("nvie/vim-flake8")
 
-" Fugitive
+" Fugitive: https://github.com/tpope/vim-fugitive
 call dein#add("tpope/vim-fugitive")
 
 " Tagbar for navigation by tags using CTags
@@ -79,33 +147,16 @@ call dein#add("majutsushi/tagbar.git")
   nnoremap <leader>rt :!ctags --extra=+f -R *<CR><CR>
   nnoremap <leader>. :TagbarToggle<CR>
 
-" Jedi… https://github.com/davidhalter/jedi
-"call dein#add("davidhalter/jedi")
-
-" Jedi-vim
-"call dein#add("davidhalter/jedi-vim")
-"  let g:jedi#show_call_signatures = "0"
-
-" Deoplete is the abbreviation of 'dark powered neo-completion'!
-call dein#add("Shougo/deoplete.nvim", { 'do': ':UpdateRemotePlugins' } )
-    let g:deoplete#enable_at_startup = 1
-    source $HOME/.config/nvim/deoplete.vim
-"call dein#add("zchee/deoplete-jedi")
-
-"call dein#add('tweekmonster/deoplete-clang2')
-"  let g:deoplete#sources#clang#libclang_path="/usr/lib64/llvm/libclang.so"
-"  let g:deoplete#sources#clang_header="/usr/include/clang"
-
 " C++/Clang/LLVM/LLDB
 "call dein#add("critiqjo/lldb.nvim")
 
-" Neo make.
-call dein#add("benekastah/neomake")
-  autocmd! BufWritePost * Neomake
-"  let g:neomake_cpp_enable_markers=['clang']
-"  let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
-  let g:neomake_python_enabled_makers = ['pep8', 'flake8', 'pylama', 'python']
-  let g:neomake_airline = 1
+" " Neo make.
+" call dein#add("benekastah/neomake")
+"   autocmd! BufWritePost * Neomake
+" "  let g:neomake_cpp_enable_markers=['clang']
+" "  let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
+"   let g:neomake_python_enabled_makers = ['pep8', 'flake8', 'pylama', 'python']
+"   let g:neomake_airline = 1
 
 " Python folding.
 call dein#add("tmhedberg/SimpylFold")
@@ -113,17 +164,16 @@ call dein#add("tmhedberg/SimpylFold")
   let g:SimpylFold_fold_import = 0
   nnoremap <space> za
 
-" CSS colours.
-call dein#add("ap/vim-css-color")
+" https://github.com/RRethy/vim-hexokinase
+call dein#add('rrethy/vim-hexokinase', { 'build': 'make hexokinase' })
+let g:Hexokinase_highlighters = [ 'virtual' ]
+let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
 
-" Git gutter.
+" Git gutter: https://github.com/airblade/vim-gitgutter
 call dein#add("airblade/vim-gitgutter")
 
 " vim fetch.
 call dein#add("kopischke/vim-fetch")
-
-" tabular.
-"call dein#add("godlygeek/tabular")
 
 " Vim easy align: https://github.com/junegunn/vim-easy-align
 call dein#add("junegunn/vim-easy-align")
@@ -149,24 +199,30 @@ call dein#add("ryanoasis/vim-devicons")
 " Vim buffer kill…
 call dein#add("qpkorr/vim-bufkill")
 
-" Dark powered asynchronous unite all interfaces for Neovim/Vim8
-"call dein#add("Shougo/denite.nvim")
-
-" Python mode: https://github.com/python-mode/python-mode
-" call dein#add("python-mode/python-mode")
-"     nnoremap <space> za
-"     let g:pymode = 1
-"     let g:pymode_python = 'python3'
-"     let g:pymode_lint_checkers = ['flake8', 'pep8', 'mccabe']
-"     " let g:pymode_lint_checkers = ['flake8', 'pep8', 'mccabe', 'pep257']
-"     let g:pymode_rope = 1
-"     let g:pymode_rope_completion = 1
-"     let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime', 'sys']
-"     let g:pymode_rope_autoimport_import_after_complete = 1
-"     autocmd FileType python setlocal omnifunc=RopeCompleteFunc
-
 " FZF: https://github.com/junegunn/fzf.vim
 call dein#add("junegunn/fzf.vim")
+
+" Plugin for vim to enable opening a file in a given line 
+" https://github.com/bogado/file-line
+call dein#add('bogado/file-line')
+
+" C++ highlighting: https://github.com/octol/vim-cpp-enhanced-highlight
+call dein#add('octol/vim-cpp-enhanced-highlight')
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let g:cpp_no_function_highlight = 1
+
+
+" Vim syntax for TOML: https://github.com/cespare/vim-toml
+call dein#add('cespare/vim-toml')
+
+" Go
+" https://github.com/fatih/vim-go
+" Make sure to run :GoInstallBinaries as well.
+call dein#add('fatih/vim-go')
 
 " All done.
 call dein#end()
@@ -257,16 +313,13 @@ nnoremap <leader>g gqip
 vnoremap <leader>g gqip
 
 " Fixed width!
-autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,bzrlog,rst,gitcommit set textwidth=78
+autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit set textwidth=78
 
 " No spelling on YAML files… I mean, really?
 autocmd FileType yaml set nospell
 
 " Neovim-qt Guifont command
 command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
-
-" Set the font.
-Guifont Terminess Powerline:h8
 
 " Auto save.
 " http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
@@ -275,5 +328,3 @@ set autowriteall
 
 " Grovey & Jenkinsfile…
 au BufNewFile,BufRead Jenkinsfile setf groovy    
-
-" EOF

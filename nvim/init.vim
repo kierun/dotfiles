@@ -1,7 +1,8 @@
 " Neovim configuration.
+"
+"   :checkhealth 
 
 " Python
-" let g:python3_host_prog="/home/yann/.pyenv/versions/neovim-3.7.4/bin/python"
 let g:python_host_prog="/home/yann/.pyenv/versions/neovim-2.7.5/bin/python"
 if exists("$VIRTUAL_ENV")
     let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
@@ -9,237 +10,118 @@ else
     let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
 endif
 
-" BEGIN dark powered Vim/Neovim plugin manager. ----------------------------
-" Run this command to update your plugins:
-"        :call dein#update()
-
-if &compatible
-   set nocompatible
-endif
-
-set runtimepath^=/home/yann/.config/nvim/dein.vim/repos/github.com/Shougo/dein.vim
-
-call dein#begin(expand('~/.cache/dein'))
-call dein#add('/home/yann/.config/nvim/dein.vim/repos/github.com/Shougo/dein.vim')
-
-" Installs a log file!
-let g:dein#install_log_filename=expand("~/.cache/dein/dein.log")
-
-" LSP: 
-" https://github.com/autozimu/LanguageClient-neovim
-" https://github.com/palantir/python-language-server
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim plug: https://github.com/junegunn/vim-plug
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
 "
-" When pylint and co stop working, it's Python Language Server's not being set
-" up properly. Too often have I looked for this shit.
+" Run :PlugInstall to install plugins
+" Run :PlugUpdate to update the plugins
 "
-" Run:
-"   pip install python-language-server
-"   pip install 'python-language-server[all]'
-call dein#add('autozimu/LanguageClient-neovim', {
-    \ 'rev': 'next',
-    \ 'build': 'bash install.sh',
-\ } )
-    let g:LanguageClient_loggingLevel = 'INFO'
-    let g:LanguageClient_loggingFile =  expand('~/log/LanguageClient.log')
-    let g:LanguageClient_serverStderr = expand('~/log/LanguageServer.log')
-    let g:LanguageClient_autoStart = 1
-    let g:LanguageClient_serverCommands = {
-        \ 'python': ['pyls', '-v'],
-        \ 'cpp': ['clangd'],
-        \ }
-    nnoremap <silent> H :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <silent> Z :call LanguageClient_textDocument_definition()<CR>
-    let g:LanguageClient_useFloatingHover = 1
+call plug#begin('~/.vim/plugged')
 
-" Coc is an intellisense engine for vim8 & neovim.
-" https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
-" Run:
-"   :CocInstall coc-python
-"   :CocInstall coc-go
-"   :CocInstall coc-json
-" to get Python and Go bindings.
-call dein#add('neoclide/coc.nvim', {'merge':0, 'rev': 'release'})
-  let g:airline#extensions#coc#enabled = 1
+" Vim airline: https://github.com/vim-airline/vim-airline
+Plug 'vim-airline/vim-airline'
 
-" " NCM2, formerly known as nvim-completion-manager, is a slim, fast hackable
-" " completion framework, for neovim.
-" " https://github.com/ncm2/ncm2
-" call dein#add('ncm2/ncm2')
-" " ncm2 requires nvim-yarp
-" call dein#add('roxma/nvim-yarp')
-"     " enable ncm2 for all buffer
-"     autocmd BufEnter * call ncm2#enable_for_buffer()
-" 
-"     " note that must keep noinsert in completeopt, the others is optional
-"     set completeopt=noinsert,menuone,noselect
-"     
-"     " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-"     inoremap <c-c> <ESC>
-" 
-"     " When the <Enter> key is pressed while the popup menu is visible, it only
-"     " hides the menu. Use this mapping to close the menu and also start a new
-"     " line.
-"     inoremap <expr> <CR> (pumvisible() ? "\<c-y>" : "\<CR>")
-" 
-"     " Use <TAB> to select the popup menu:
-"     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-"     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" 
-" " Some completion sources…
-" call dein#add('ncm2/ncm2-bufword')
-" call dein#add('ncm2/ncm2-tmux')
-" call dein#add('ncm2/ncm2-path')
-" call dein#add('ncm2/ncm2-jedi')
-" 
-" " NCM2, Clang, and C++ … 'cause it's SPECIAL!
-" call dein#add('ncm2/ncm2-pyclang')
-" 
-"     " Path to directory where libclang.so can be found ← Make sure you create it
-"     " and sym link it if the lib is somewhere else on your system. Yeah, Fedora
-"     " and CentOS put it in different places because fuck you, that's why.
-"     let g:ncm2_pyclang#library_path = '/home/yann/llvm/lib'
-"     " a list of relative paths for compile_commands.json
-"     let g:ncm2_pyclang#database_path = [
-"                 \ 'compile_commands.json',
-"                 \ 'build/compile_commands.json'
-"                 \ ]
-"     " Goto Declaration
-"     autocmd FileType c,cpp nnoremap <buffer> gd :<c-u>call ncm2_pyclang#goto_declaration()<cr>
+" Vim airline theme: https://github.com/vim-airline/vim-airline-themes
+Plug 'vim-airline/vim-airline-themes'
 
-" Vim airline.
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('bling/vim-airline.git')
-  let g:airline_powerline_fonts = 1
-  let g:airline_theme='molokai'
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#show_tabs = 1
-  let g:airline#extensions#tabline#show_buffers = 1
-  let airline#extensions#tabline#middle_click_preserves_windows = 1
+" Conquer of Completions: https://github.com/neoclide/coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" NERDTree for project drawer
-call dein#add("scrooloose/nerdtree.git")
-  let NERDTreeHijackNetrw = 0
-  let NERDChristmasTree = 1
-  nmap <F4> :NERDTreeToggle<CR>
-
-" NERD tree + tabs.
-call dein#add("jistr/vim-nerdtree-tabs.git")
-  let g:nerdtree_tabs_open_on_gui_startup=2
-  let g:nerdtree_tabs_open_on_console_startup=2
-
-" NERD tree + git
-call dein#add("Xuyuanp/nerdtree-git-plugin")
-
-" gundo for awesome undo tree visualization
-call dein#add("sjl/gundo.vim.git")
-  nmap <F3> :GundoToggle<CR>
-
-" Vim flake 8.
-"call dein#add("nvie/vim-flake8")
-
-" Fugitive: https://github.com/tpope/vim-fugitive
-call dein#add("tpope/vim-fugitive")
-
-" Tagbar for navigation by tags using CTags
-call dein#add("majutsushi/tagbar.git")
-  let g:tagbar_autofocus = 1
-  nnoremap <leader>rt :!ctags --extra=+f -R *<CR><CR>
-  nnoremap <leader>. :TagbarToggle<CR>
-
-" C++/Clang/LLVM/LLDB
-"call dein#add("critiqjo/lldb.nvim")
-
-" " Neo make.
-" call dein#add("benekastah/neomake")
-"   autocmd! BufWritePost * Neomake
-" "  let g:neomake_cpp_enable_markers=['clang']
-" "  let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
-"   let g:neomake_python_enabled_makers = ['pep8', 'flake8', 'pylama', 'python']
-"   let g:neomake_airline = 1
-
-" Python folding.
-call dein#add("tmhedberg/SimpylFold")
-  let g:SimpylFold_docstring_preview = 1
-  let g:SimpylFold_fold_import = 0
-  nnoremap <space> za
-
-" https://github.com/RRethy/vim-hexokinase
-call dein#add('rrethy/vim-hexokinase', { 'build': 'make hexokinase' })
-let g:Hexokinase_highlighters = [ 'virtual' ]
-let g:Hexokinase_optInPatterns = ['full_hex', 'triple_hex', 'rgb', 'rgba', 'colour_names']
-
-" Git gutter: https://github.com/airblade/vim-gitgutter
-call dein#add("airblade/vim-gitgutter")
-
-" vim fetch.
-call dein#add("kopischke/vim-fetch")
+" NERDTree: https://github.com/preservim/nerdtree
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Vim easy align: https://github.com/junegunn/vim-easy-align
-call dein#add("junegunn/vim-easy-align")
-    " Start interactive EasyAlign in visual mode (e.g. vipga)
-    xmap ga <Plug>(EasyAlign)
-    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
-
-" Altr: swtich between header and source files…#
-call dein#add("kana/vim-altr")
-nmap <F2> <Plug>(altr-forward)
-nmap <F3> <Plug>(altr-back)
-command! A call altr#forward()
-
-" CTRL+P Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-call dein#add("ctrlpvim/ctrlp.vim")
-  let g:ctrlp_map = '<c-p>'
-  let g:ctrlp_cmd = 'CtrlP'
+Plug 'junegunn/vim-easy-align'
 
 " Devicons.
-call dein#add("ryanoasis/vim-devicons")
-
-" Vim buffer kill…
-call dein#add("qpkorr/vim-bufkill")
+Plug 'ryanoasis/vim-devicons'
 
 " FZF: https://github.com/junegunn/fzf.vim
-call dein#add("junegunn/fzf.vim")
-
-" Plugin for vim to enable opening a file in a given line 
-" https://github.com/bogado/file-line
-call dein#add('bogado/file-line')
-
-" C++ highlighting: https://github.com/octol/vim-cpp-enhanced-highlight
-call dein#add('octol/vim-cpp-enhanced-highlight')
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-let g:cpp_concepts_highlight = 1
-let g:cpp_no_function_highlight = 1
-
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
 " Vim syntax for TOML: https://github.com/cespare/vim-toml
-call dein#add('cespare/vim-toml')
+Plug 'cespare/vim-toml'
 
-" Go
-" https://github.com/fatih/vim-go
-" Make sure to run :GoInstallBinaries as well.
-call dein#add('fatih/vim-go')
+" Fugitive: https://github.com/tpope/vim-fugitive
+Plug 'tpope/vim-fugitive'
 
-" All done.
-call dein#end()
+" Git gutter: https://github.com/airblade/vim-gitgutter
+Plug 'airblade/vim-gitgutter'
 
+" Opening a file in a given line: https://github.com/bogado/file-line
+Plug 'bogado/file-line'
+
+" Initialize plugin system
+call plug#end()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Colours.
+colorscheme neverness
+
+" Syntax always on.
 filetype plugin indent on
-" END dark powered Vim/Neovim plugin manager. ------------------------------
+syntax on
 
-" True colours: Does not seem to be working…
-"set termguicolors
+" Set leader.
+let mapleader=','
 
-" Status line...
+" Various commands.
+set cursorcolumn
+set cursorline
+set expandtab
 set laststatus=2
+set mouse=a
+set shiftwidth=4
+set tabstop=4
 
-" In English and en Français.
+"Configure airline
+let g:airline_detect_spell=1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='molokai'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let airline#extensions#tabline#middle_click_preserves_windows = 1
+
+" Configure Conquer of Completions
+let g:coc_global_extensions = ["coc-json",
+      \ "coc-python",
+      \ "coc-prettier",
+      \ "coc-html",
+      \ "coc-css",
+      \ "coc-yaml",
+      \ "coc-go",
+      \ "coc-markdownlint"]
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Configure easy align.
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Configure NERDTree.
+let NERDTreeHijackNetrw = 0
+let NERDChristmasTree = 1
+nmap <F4> :NERDTreeToggle<CR>
+
+" In English et en Français.
 set spell
 set spelllang=en_gb,fr
-"set spelllang=fr
 
 " FRENCH Mapping scheme in alphabetic order
 " where _ denotes primary letter
@@ -277,23 +159,7 @@ map! ;u û
 map! ;v ü
 map! ;; ⸮
 
-" Color scheme.
-" set background=dark
-colorscheme neverness
-filetype plugin indent on
-syntax on
-
-" Various commands.
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set cursorline
-set cursorcolumn
-let mapleader=','
-set mouse=a
-
 " Copy and paste.
-"set clipboard+=unmappedplus
 vmap <LeftRelease> "*ygv
 
 " Copy to clipboard
@@ -318,13 +184,8 @@ autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit se
 " No spelling on YAML files… I mean, really?
 autocmd FileType yaml set nospell
 
-" Neovim-qt Guifont command
-command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
-
-" Auto save.
-" http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
+" Auto save: http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 au FocusLost * :wa
 set autowriteall
 
-" Grovey & Jenkinsfile…
-au BufNewFile,BufRead Jenkinsfile setf groovy    
+" EOF
