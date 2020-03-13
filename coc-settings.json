@@ -5,7 +5,9 @@
     "diagnostic.hintSign": "➤",
     "diagnostic.checkCurrentLine": true,
 
+    "suggest.floatEnable": false,
+
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.linting.pylintPath": "PRS_ROOT/.tox/develop/bin/pylint"
+    "python.linting.pylintPath": "~/.pyenv/shims/pylint"
 }
