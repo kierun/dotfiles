@@ -73,10 +73,16 @@ let mapleader=','
 " Various commands.
 set cursorcolumn
 set cursorline
-set expandtab
 set laststatus=2
 set mouse=a
 set shiftwidth=4
+
+" tab, because they are the devil's work!
+set expandtab
+autocmd FileType go set noexpandtab
+set shiftwidth=4
+set smarttab
+set softtabstop=0 
 set tabstop=4
 
 "Configure airline
@@ -169,6 +175,15 @@ map! ;t ù
 map! ;u û
 map! ;v ü
 map! ;; ⸮
+
+" Because I love some UTF-8!
+map! ;1 ☺
+map! ;2 ⍨
+map! ;3 ☹
+map! ;4 ⚠
+map! ;5 ♬
+map! ;6 ☣
+map! ;7 ☠
 
 " Copy and paste.
 vmap <LeftRelease> "*ygv
