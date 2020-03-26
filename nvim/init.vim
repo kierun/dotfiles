@@ -10,8 +10,17 @@ else
     let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
 endif
 
+" Folding
+"   https://jdhao.github.io/2019/08/16/nvim_config_folding/
+"   https://vim.fandom.com/wiki/Foldin
+" -▼-
+set foldmethod=marker
+set foldmarker=-▼-,-▲-  " … Because who does not love silly UTF-8⸮
+" -▲-
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim plug: https://github.com/junegunn/vim-plug
+" -▼-
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -59,6 +68,7 @@ Plug 'bogado/file-line'
 " Initialize plugin system
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -▲-
 
 " Colours.
 colorscheme neverness
@@ -78,14 +88,17 @@ set mouse=a
 set shiftwidth=4
 
 " tab, because they are the devil's work!
+" -▼-
 set expandtab
 autocmd FileType go set noexpandtab
 set shiftwidth=4
 set smarttab
 set softtabstop=0 
 set tabstop=4
+" -▲-
 
-"Configure airline
+"Configure airline.
+" -▼-
 let g:airline_detect_spell=1
 let g:airline_powerline_fonts = 1
 let g:airline_theme='molokai'
@@ -93,8 +106,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let airline#extensions#tabline#middle_click_preserves_windows = 1
+" -▲-
 
-" Configure Conquer of Completions
+" Configure Conquer of Completions.
+" -▼-
 let g:coc_global_extensions = ["coc-json",
       \ "coc-python",
       \ "coc-html",
@@ -124,8 +139,10 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+" -▲-
 
 " Configure easy align.
+" -▼-
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -135,8 +152,10 @@ nmap ga <Plug>(EasyAlign)
 let NERDTreeHijackNetrw = 0
 let NERDChristmasTree = 1
 nmap <F4> :NERDTreeToggle<CR>
+" -▲-
 
 " In English et en Français.
+" -▼-
 set spell
 set spelllang=en_gb,fr
 
@@ -175,8 +194,10 @@ map! ;t ù
 map! ;u û
 map! ;v ü
 map! ;; ⸮
+" -▲-
 
 " Because I love some UTF-8!
+" -▼-
 map! ;1 ☺
 map! ;2 ⍨
 map! ;3 ☹
@@ -184,8 +205,10 @@ map! ;4 ⚠
 map! ;5 ♬
 map! ;6 ☣
 map! ;7 ☠
+" -▲-
 
 " Copy and paste.
+" -▼-
 vmap <LeftRelease> "*ygv
 
 " Copy to clipboard
@@ -199,10 +222,13 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
+" -▲-
 
 " Format.
+" -▼-
 nnoremap <leader>g gqip
 vnoremap <leader>g gqip
+" -▲-
 
 " Fixed width!
 autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit set textwidth=78
@@ -213,5 +239,3 @@ autocmd FileType yaml set nospell
 " Auto save: http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 au FocusLost * :wa
 set autowriteall
-
-" EOF
