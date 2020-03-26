@@ -1,11 +1,11 @@
 ! xrdb ~/.Xresources
-Xft.dpi:        96
+Xft.dpi:        156
 Xft.antialias:  true
 Xft.hinting:    true
 Xft.rgba:       rgb
 Xft.autohint:   0
 Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintfull
+Xft.hintstyle:  hintslight
 
 ! XST
 ! These are all possible options, presented with default values.
@@ -18,13 +18,13 @@ st.termname:     xterm-256color
 st.shell:        /usr/bin/zsh
 
 ! The following options options can be reloaded via USR1 signal.
-st.font:              PragmataPro Nerd Font Mono:style=Regular:pixelsize=11:antialias=true:autohint=true
+st.font:              PragmataPro Nerd Font Mono:style=Regular:pixelsize=19:antialias=true:autohint=true
 st.borderpx:          6
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:       2
 ! thickness of underline and bar cursors
 st.cursorthickness:   2
-! 0: normal blinking, 1: leave cursor border and blink with cursor's background
+! 0: normal blinking, 1: leave cursor border and blink with cursor background
 st.cursorblinkstyle:  0
 ! 0: cursor blinks with a constant interval; 1: blinking cycle resets on key input
 st.cursorblinkontype: 1
