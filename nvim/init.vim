@@ -37,6 +37,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Conquer of Completions: https://github.com/neoclide/coc.nvim
+"   Do NOT use CoC-go, instead use vim-go see below.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " NERDTree: https://github.com/preservim/nerdtree
@@ -64,6 +65,9 @@ Plug 'airblade/vim-gitgutter'
 
 " Opening a file in a given line: https://github.com/bogado/file-line
 Plug 'bogado/file-line'
+
+" Go support.
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Initialize plugin system
 call plug#end()
@@ -152,6 +156,16 @@ nmap ga <Plug>(EasyAlign)
 let NERDTreeHijackNetrw = 0
 let NERDChristmasTree = 1
 nmap <F4> :NERDTreeToggle<CR>
+" -▲-
+
+" Configure vim-go
+" -▼-
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 " -▲-
 
 " In English et en Français.
