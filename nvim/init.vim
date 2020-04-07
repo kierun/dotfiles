@@ -119,9 +119,9 @@ let g:coc_global_extensions = ["coc-json",
       \ "coc-html",
       \ "coc-css",
       \ "coc-yaml",
-      \ "coc-go",
       \ "coc-markdownlint",
       \ "coc-clangd",
+      \ "coc-go",
       \ "coc-git"]
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -160,12 +160,28 @@ nmap <F4> :NERDTreeToggle<CR>
 
 " Configure vim-go
 " -▼-
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_addtags_transform = "camelcase"
+
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_operators = 1
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+let g:go_auto_type_info = 1
+
+" Play nice with coc_go?
+" https://github.com/fatih/vim-go/issues/2760
+let g:go_gopls_enabled = 1
+let g:go_gopls_options = ['-remote=auto']
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_referrers_mode = 'gopls'
+
 " -▲-
 
 " In English et en Français.
