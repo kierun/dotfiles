@@ -26,6 +26,7 @@ export PATH=~/bin:\
 /usr/lib/ccache
 
 # Completion.
+fpath+=~/.zfunc
 autoload -Uz compinit
 compinit -i
 
