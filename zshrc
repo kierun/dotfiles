@@ -117,7 +117,6 @@ limit core 1024M
 
 ### Aliases
 alias ls='/bin/ls -bsFhv --color'
-alias lsd='/usr/bin/lsd -F --icon-theme fancy'
 alias sb='source $HOME/.bashrc'
 alias cal="cal -e -f"
 alias pyl="pylint -f colorized -r n"
