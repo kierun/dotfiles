@@ -69,6 +69,9 @@ Plug 'bogado/file-line'
 " Go support.
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" vimwiki: https://github.com/vimwiki/vimwiki
+Plug 'vimwiki/vimwiki'
+
 " Initialize plugin system
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -182,6 +185,12 @@ let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_referrers_mode = 'gopls'
 
+" -▲-
+
+" Configure vimwiki.
+" -▼-
+let g:vimwiki_list = [{'path': '~/repos/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 " -▲-
 
 " In English et en Français.
