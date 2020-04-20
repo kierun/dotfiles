@@ -144,6 +144,17 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # direnv
 eval "$(direnv hook zsh)"
 
+# psgrep from oh-my-zsh
+# ps + grep.
+psgrep() {
+  local pids
+  pids=$(pgrep -f $@)
+  if ! [[ $pids ]]; then
+    echo "No processes found." >&2; return 1
+  fi
+  ps up $(pgrep -f $@)
+}
+
 ## Local data: MUST BE LAST!!!
 if [[ -e ~/.zsh/local ]]
 then source ~/.zsh/local
