@@ -69,8 +69,14 @@ Plug 'bogado/file-line'
 " Go support.
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Go debugger: delve.
+Plug 'sebdah/vim-delve'
+
 " vimwiki: https://github.com/vimwiki/vimwiki
 Plug 'vimwiki/vimwiki'
+
+" Nord theme: https://github.com/arcticicestudio/nord-vim
+Plug 'arcticicestudio/nord-vim'
 
 " Initialize plugin system
 call plug#end()
@@ -78,7 +84,7 @@ call plug#end()
 " -▲-
 
 " Colours.
-colorscheme neverness
+"colorscheme neverness
 
 " Syntax always on.
 filetype plugin indent on
@@ -108,11 +114,28 @@ set tabstop=4
 " -▼-
 let g:airline_detect_spell=1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='molokai'
+"let g:airline_theme='molokai'
+let g:airline_theme='nord'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let airline#extensions#tabline#middle_click_preserves_windows = 1
+" -▲-
+
+" Configure Nord theme.
+" -▼-
+let g:nord_cursor_line_number_background = 1
+let g:nord_italic_comments = 1
+
+" This makes airline load.
+colorscheme nord
+"augroup nord-theme-overrides
+"  autocmd!
+"  " Use 'nord7' as foreground color for Vim comment titles.
+"  autocmd ColorScheme nord let s:nord0_gui = "#000000"
+"augroup END
+" User my colours.
+colorscheme neverness
 " -▲-
 
 " Configure Conquer of Completions.
@@ -124,8 +147,9 @@ let g:coc_global_extensions = ["coc-json",
       \ "coc-yaml",
       \ "coc-markdownlint",
       \ "coc-clangd",
-      \ "coc-go",
       \ "coc-git"]
+
+"      \ "coc-go",
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -146,6 +170,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
 " -▲-
 
 " Configure easy align.
@@ -167,11 +192,14 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_addtags_transform = "camelcase"
 
-let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_interfaces = 0
+let g:go_highlight_operators = 0
+let g:go_highlight_structs = 0
+let g:go_highlight_types = 1
+
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
