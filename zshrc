@@ -73,7 +73,9 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✓%G%}"
 
 source $HOME/.zsh/python_virtual_env.zsh
-PROMPT='$(virtualenv_prompt_info)$(git_super_status)%{[38;5;24m%};%{[0m%} '
+PROMPT='%(?.%F{green}√.%F{red}✗ %?)%f $(virtualenv_prompt_info)$(git_super_status)%{[38;5;24m%};%{[0m%} '
+
+# PROMPT='%(?.%F{green}√.%F{red}✗ %?)%f %B%F{240}%1~%f%b %B%F{red}%#%f%b '
 
 if [[ ${TERM} == "screen-256color" ]]; then
   precmd () { print -Pn "\033k\033\134\033k%1d\033\134" }
