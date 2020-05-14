@@ -188,6 +188,11 @@ nmap <F4> :NERDTreeToggle<CR>
 
 " Configure vim-go
 " -▼-
+
+au! BufNewFile,BufRead *.go set foldmethod=syntax
+
+let g:go_fmt_experimental = 1  " https://github.com/fatih/vim-go/issues/502
+
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 1
 let g:go_addtags_transform = "camelcase"
