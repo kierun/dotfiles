@@ -1,13 +1,8 @@
 autopep8
 black
 cmarkgfm
-devpi
-devpi-client
-devpi-server
-devpi-web
 icdiff
 ipython
-iredis
 isort
 khal
 meson
@@ -15,10 +10,10 @@ mock
 mycli
 mypy
 pdbpp
+pgcli
 pip-autoremove
 pipdeptree
 pipenv
-powerline-status
 pre-commit
 pydeps
 pydocstyle
@@ -33,7 +28,6 @@ pytest-sugar
 pytest-xdist
 python-language-server
 python-language-server[all]
-redis
 rich
 rope
 stevedore
