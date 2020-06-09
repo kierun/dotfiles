@@ -8,3 +8,4 @@ include "%L"
 <Multi_key> <l> <l> : "→" # Right arrow.
 <Multi_key> <1> <1> : "☺" # Happy.
 <Multi_key> <2> <2> : "☹" # Sad.
+<Multi_key> <3> <3> : "¯\\_(ツ)_/¯" # Shrug.
