@@ -36,3 +36,6 @@ dlv
 worldr
 dev
 app
+getSpecificChannels
+newSqlChannelStore
+newSqlChannelStore
