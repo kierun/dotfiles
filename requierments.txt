@@ -1,4 +1,5 @@
 autopep8
+bandit
 black
 cmarkgfm
 icdiff
