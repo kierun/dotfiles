@@ -86,6 +86,12 @@ call plug#end()
 " Colours.
 "colorscheme neverness
 
+" https://medium.com/@dnrvs/per-project-settings-in-nvim-fc8c8877d970
+" This allows me to have added per project configuration files.
+" This is super useful for vimwiki…
+set exrc
+set secure
+
 " Syntax always on.
 filetype plugin indent on
 syntax on
@@ -307,6 +313,8 @@ autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit se
 
 " No spelling on YAML files… I mean, really?
 autocmd FileType yaml set nospell
+" Stupid tabs.
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Auto save: http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 au FocusLost * :wa
