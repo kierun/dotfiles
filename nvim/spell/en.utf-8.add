@@ -39,3 +39,11 @@ app
 getSpecificChannels
 newSqlChannelStore
 newSqlChannelStore
+PostgreSQL
+passbolt
+AES
+CYBERTEC
+runbook
+TDE
+WA-24
+WA-43

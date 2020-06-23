@@ -219,7 +219,7 @@ let g:go_auto_type_info = 1
 " Play nice with coc_go?
 " https://github.com/fatih/vim-go/issues/2760
 let g:go_gopls_enabled = 1
-let g:go_gopls_options = ['-remote=auto']
+let g:go_gopls_options = ['-remote=auto', '-rpc.trace']
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_referrers_mode = 'gopls'
@@ -228,6 +228,7 @@ let g:go_referrers_mode = 'gopls'
 
 " Configure vimwiki.
 " -▼-
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/repos/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 " -▲-
@@ -311,8 +312,9 @@ vnoremap <leader>g gqip
 " Fixed width!
 autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit set textwidth=78
 
-" No spelling on YAML files… I mean, really?
+" No spelling on YAML & Docker files… I mean, really?
 autocmd FileType yaml set nospell
+autocmd FileType dockerfile set nospell
 " Stupid tabs.
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 

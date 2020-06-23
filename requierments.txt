@@ -23,6 +23,7 @@ pylint
 pyls-black
 pyls-isort
 pyls-mypy
+pysnooper
 pytest
 pytest-cov
 pytest-sugar
