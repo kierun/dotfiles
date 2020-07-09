@@ -78,6 +78,9 @@ Plug 'vimwiki/vimwiki'
 " Nord theme: https://github.com/arcticicestudio/nord-vim
 Plug 'arcticicestudio/nord-vim'
 
+" Python folding: https://github.com/tmhedberg/SimpylFold
+Plug 'tmhedberg/SimpylFold'
+
 " Initialize plugin system
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -151,6 +154,7 @@ let g:coc_global_extensions = ["coc-json",
       \ "coc-html",
       \ "coc-css",
       \ "coc-yaml",
+      \ "coc-json",
       \ "coc-markdownlint",
       \ "coc-clangd",
       \ "coc-git"]
@@ -231,6 +235,11 @@ let g:go_referrers_mode = 'gopls'
 let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/repos/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+" -▲-
+
+" Configure SimpylFold
+" -▼-
+let g:SimpylFold_docstring_preview = 1
 " -▲-
 
 " In English et en Français.

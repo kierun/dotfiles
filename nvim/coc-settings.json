@@ -1,0 +1,41 @@
+{
+    "diagnostic.errorSign": "✖",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "ℹ",
+    "diagnostic.hintSign": "➤",
+    "diagnostic.checkCurrentLine": true,
+
+    "suggest.floatEnable": false,
+    "coc.preferences.hoverTarget": "float",
+
+    "suggest.timeout": 500,
+	"suggest.completionItemKindLabels": {
+		"variable": "⬥",
+		"function": "𝑓",
+		"class": "↣",
+		"interface": "☍",
+		"module": "{}",
+		"keyword": "≔",
+		"property": "⚲",
+		"value": "◰",
+		"enum": "◰",
+		"field": "☐",
+		"method": "𝑓",
+		"file": "\uf24a",
+		"folder": "\uf114"
+	},
+
+    "python.jediEnabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintPath": "~/.pyenv/shims/pylint",
+    "python.sortImports.path": "/Users/esn89/Library/Python/3.7/bin/isort",
+
+    "yaml.schemas": {
+        "kubernetes": "/*.yaml"
+    },
+    "yaml.trace.server": "verbose",
+	"yaml.validate": true,
+	"yaml.completion": true,
+	"yaml.format.enable": true
+}
