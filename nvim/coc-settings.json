@@ -37,5 +37,8 @@
     "yaml.trace.server": "verbose",
 	"yaml.validate": true,
 	"yaml.completion": true,
-	"yaml.format.enable": true
+	"yaml.format.enable": true,
+
+    "go.goplsArgs": ["-remote", "auto"],
+    "go.goplsPath": "/home/yann/go/bin/gopls"
 }

@@ -222,6 +222,7 @@ let g:go_auto_type_info = 1
 
 " Play nice with coc_go?
 " https://github.com/fatih/vim-go/issues/2760
+" https://github.com/josa42/coc-go/issues/76#issuecomment-659947017
 let g:go_gopls_enabled = 1
 let g:go_gopls_options = ['-remote=auto', '-rpc.trace']
 let g:go_def_mode='gopls'
