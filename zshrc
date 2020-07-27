@@ -132,6 +132,8 @@ alias rmpyc="find . -regex '.*\.pyc$' -delete"
 alias grep="grep -n --colour=auto"
 alias clean='rm -rf ./build ./*.egg-info *.link_built *.whl **/*.pyc'
 alias apg='apg -m 23 -a 0 -t -M NCSL'
+alias rcp='rsync --archive --compress --progress'
+alias scp='echo "Use rcp"'
 
 ## Function to start tmux
 mux () {tmux -2 new -s $1 || tmux attach -t $1}
