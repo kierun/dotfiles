@@ -151,6 +151,7 @@ colorscheme neverness
 " -▼-
 let g:coc_global_extensions = ["coc-json",
       \ "coc-python",
+      \ "coc-pyright",
       \ "coc-html",
       \ "coc-css",
       \ "coc-yaml",
@@ -234,7 +235,7 @@ let g:go_referrers_mode = 'gopls'
 " Configure vimwiki.
 " -▼-
 let g:vimwiki_global_ext = 0
-let g:vimwiki_list = [{'path': '~/repos/vimwiki/',
+let g:vimwiki_list = [{'path': '~/src/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 " -▲-
 
