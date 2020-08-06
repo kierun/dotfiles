@@ -145,6 +145,9 @@ colorscheme nord
 "augroup END
 " User my colours.
 colorscheme neverness
+set background=dark
+hi Normal ctermbg=16 guibg=#000000
+hi LineNr ctermbg=16 guibg=#000000
 " -▲-
 
 " Configure Conquer of Completions.
