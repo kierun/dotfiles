@@ -141,13 +141,10 @@ colorscheme nord
 "augroup nord-theme-overrides
 "  autocmd!
 "  " Use 'nord7' as foreground color for Vim comment titles.
-"  autocmd ColorScheme nord let s:nord0_gui = "#000000"
+"  autocmd ColorScheme nord let s:nord1_term = "4"
 "augroup END
 " User my colours.
-colorscheme neverness
-set background=dark
-hi Normal ctermbg=16 guibg=#000000
-hi LineNr ctermbg=16 guibg=#000000
+"colorscheme neverness
 " -▲-
 
 " Configure Conquer of Completions.
