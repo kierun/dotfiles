@@ -81,6 +81,9 @@ Plug 'arcticicestudio/nord-vim'
 " Python folding: https://github.com/tmhedberg/SimpylFold
 Plug 'tmhedberg/SimpylFold'
 
+" LaTeX: https://github.com/lervag/vimtex
+Plug 'lervag/vimtex'
+
 " Initialize plugin system
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,6 +245,12 @@ let g:vimwiki_list = [{'path': '~/src/vimwiki/',
 " Configure SimpylFold
 " -▼-
 let g:SimpylFold_docstring_preview = 1
+" -▲-
+
+" Configure LaTeX
+" -▼-
+autocmd FileType tex setlocal ts=2 sts=2 sw=2 expandtab
+let g:tex_flavor='latex'
 " -▲-
 
 " In English et en Français.
