@@ -1,6 +1,7 @@
 autopep8
 bandit
 black
+bump2version
 cmarkgfm
 icdiff
 ipython
