@@ -161,7 +161,8 @@ let g:coc_global_extensions = ["coc-json",
       \ "coc-json",
       \ "coc-markdownlint",
       \ "coc-clangd",
-      \ "coc-git"]
+      \ "coc-git",
+      \ "coc-texlab"] 
 
 "      \ "coc-go",
 
@@ -250,7 +251,6 @@ let g:SimpylFold_docstring_preview = 1
 " Configure LaTeX
 " -▼-
 autocmd FileType tex setlocal ts=2 sts=2 sw=2 expandtab
-let g:tex_flavor='latex'
 " -▲-
 
 " In English et en Français.
