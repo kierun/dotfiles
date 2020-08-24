@@ -86,7 +86,8 @@ else
 fi
 
 ### Colours
-eval `dircolors ~/.dircolors.256dark`
+# eval `dircolors ~/.dircolors.256dark`
+eval `dircolors ~/.dircolors.nord`
 cless () {
     pygmentize -gf terminal256 -O encoding=utf-8 -P style=friendly "$1" | less -R
 }

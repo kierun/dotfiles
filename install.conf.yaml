@@ -15,6 +15,7 @@
     ~/.dotfiles: ''
     ~/.tmux.conf: tmux.conf
     ~/.dircolors.256dark: dircolors.256dark
+    ~/.dircolors.nord: dircolors.nord
     ~/.zshrc: zshrc
     ~/.gitignore: gitignore
     ~/.config/nvim: nvim
