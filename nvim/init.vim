@@ -152,19 +152,19 @@ colorscheme nord
 
 " Configure Conquer of Completions.
 " -▼-
-let g:coc_global_extensions = ["coc-json",
-      \ "coc-python",
-      \ "coc-pyright",
-      \ "coc-html",
+let g:coc_global_extensions = [
+      \ "coc-clangd",
       \ "coc-css",
-      \ "coc-yaml",
+      \ "coc-git",
+      \ "coc-html",
       \ "coc-json",
       \ "coc-markdownlint",
-      \ "coc-clangd",
-      \ "coc-git",
-      \ "coc-texlab"] 
+      \ "coc-pyright",
+      \ "coc-python",
+      \ "coc-texlab",
+      \ "coc-yaml" ] 
 
-"      \ "coc-go",
+"      \ "coc-go",  This is SHIT!
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -215,10 +215,14 @@ let g:go_addtags_transform = "camelcase"
 let g:go_highlight_fields = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_functions = 1
-let g:go_highlight_interfaces = 0
-let g:go_highlight_operators = 0
-let g:go_highlight_structs = 0
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
+
+let g:go_doc_popup_window = 1
+
+let g:go_auto_type_info = 1
 
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
@@ -251,6 +255,7 @@ let g:SimpylFold_docstring_preview = 1
 " Configure LaTeX
 " -▼-
 autocmd FileType tex setlocal ts=2 sts=2 sw=2 expandtab
+let g:tex_flavor = 'latex'
 " -▲-
 
 " In English et en Français.

@@ -25,7 +25,7 @@
 		"folder": "\uf114"
 	},
 
-    "python.jediEnabled": false,
+    "python.jediEnabled": true,
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.linting.pylintPath": "~/.pyenv/shims/pylint",
@@ -39,6 +39,11 @@
 	"yaml.completion": true,
 	"yaml.format.enable": true,
 
-    "go.goplsArgs": ["-remote", "auto"],
-    "go.goplsPath": "/home/yann/go/bin/gopls"
+    "yaml.completion": true,
+    "yaml.hover": true,
+    "yaml.schemas": {
+        "kubernetes": ["/kubernetes/*.yaml"]
+    },
+    "yaml.validate": true
+
 }
