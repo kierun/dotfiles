@@ -6,6 +6,7 @@ cmarkgfm
 icdiff
 ipython
 isort
+glances
 khal
 meson
 mock
