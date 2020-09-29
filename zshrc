@@ -120,6 +120,7 @@ limit core 1024M
 
 ### Aliases
 alias ls='/bin/ls -bsFhv --color'
+alias tree='/usr/bin/lsd --tree -A'
 alias sb='source $HOME/.bashrc'
 alias cal="cal -e -f"
 alias pyl="pylint -f colorized -r n"
@@ -132,7 +133,8 @@ alias rmcore="find . -regex '.*core\.[0-9]*' -delete"
 alias rmpyc="find . -regex '.*\.pyc$' -delete"
 alias grep="grep -n --colour=auto"
 alias clean='rm -rf ./build ./*.egg-info *.link_built *.whl **/*.pyc'
-alias apg='apg -m 23 -a 0 -t -M NCSL'
+# alias apg='apg -m 23 -a 0 -t -M NCSL' NO LONGER SECURE!!!
+alias apg='pwgen -c -n -y  23 3'
 alias rcp='rsync --archive --compress --progress'
 alias scp='echo "Use rcp"'
 
