@@ -24,10 +24,12 @@ lst = [u"\u263A",       # ☺
        u"隻狼",         # One Armed Wolf / Sekirom
        "¯\_(ツ)_/¯",    # shrugs.
        u"gå agurk",     # to run amok, to go berserk, lit. “to go cucumber”.
+       u"\u2234"        # ∴, Therefore.
        ]
 count = 0
 for x in range(0, len(lst)):
-    print(u'    {}'.format(lst[x]), end="")
+    print(u'{cha:{fill}{align}{width}}'.format(cha=lst[x], fill=' ',
+        align='<', width=10), end="")
     count += 1
     if count > 5:
         print("")
