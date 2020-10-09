@@ -8,21 +8,18 @@ function! IsOnSomeParticularMachine(hostname)
 endfunction
 
 " Fonts.
-"GuiFont Terminess Powerline:h8
-"GuiFont! InputMonoNarrow Nerd Font:h8
-"GuiFont! InconsolataForPowerline Nerd Font:h10
-"GuiFont! PragmataPro Nerd Font:h9
-"GuiFont! MPlus Nerd Font:h9
-"GuiFont! Iosevka Nerd Font:h9
 " if IsOnSomeParticularMachine('nightwatch')
 "     GuiFont! PragmataProMono Nerd Font:h9
 " else
 "     GuiFont! PragmataPro Nerd Font Mono:h9
 " endif
 GuiFont! PragmataPro Nerd Font Mono:h9
+"
+" GuiFont! VictorMono Nerd Font Mono:h9
 
 " No ugly tab line in windows!
 GuiTabline 0
+"GuiRenderLigature 1
 
 "
 if @% == ""

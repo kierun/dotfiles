@@ -84,6 +84,9 @@ Plug 'tmhedberg/SimpylFold'
 " LaTeX: https://github.com/lervag/vimtex
 Plug 'lervag/vimtex'
 
+" Flutter / Dart: https://github.com/dart-lang/dart-vim-plugin
+Plug 'dart-lang/dart-vim-plugin'
+
 " Initialize plugin system
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,8 +109,8 @@ syntax on
 let mapleader=','
 
 " Various commands.
-set cursorcolumn
-set cursorline
+"set cursorcolumn
+"set cursorline
 set laststatus=2
 set mouse=a
 set shiftwidth=4
@@ -155,6 +158,7 @@ colorscheme nord
 let g:coc_global_extensions = [
       \ "coc-clangd",
       \ "coc-css",
+      \ "coc-flutter",
       \ "coc-git",
       \ "coc-html",
       \ "coc-json",
