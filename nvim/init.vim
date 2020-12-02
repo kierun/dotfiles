@@ -156,18 +156,23 @@ colorscheme nord
 " Configure Conquer of Completions.
 " -▼-
 let g:coc_global_extensions = [
-      \ "coc-clangd",
-      \ "coc-css",
-      \ "coc-flutter",
-      \ "coc-git",
-      \ "coc-html",
       \ "coc-json",
       \ "coc-markdownlint",
-      \ "coc-pyright",
       \ "coc-python",
-      \ "coc-texlab",
-      \ "coc-yaml" ] 
+      \ "coc-yaml" ]
 
+"      \ "coc-clangd",
+"      \ "coc-css",
+"      \ "coc-flutter",
+"      \ "coc-git",
+"      \ "coc-html",
+"      \ "coc-json",
+"      \ "coc-markdownlint",
+"      \ "coc-pyright",
+"      \ "coc-python",
+"      \ "coc-texlab",
+"      \ "coc-yaml" ] 
+"
 "      \ "coc-go",  This is SHIT!
 
 " Use `[g` and `]g` to navigate diagnostics
