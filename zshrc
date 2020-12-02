@@ -120,7 +120,7 @@ limit core 1024M
 
 ### Aliases
 alias ls='/bin/ls -bsFhv --color'
-alias tree='/usr/bin/lsd --tree -A'
+alias tree='lsd --tree -A'
 alias sb='source $HOME/.bashrc'
 alias cal="cal -e -f"
 alias pyl="pylint -f colorized -r n"
@@ -161,6 +161,14 @@ psgrep() {
   fi
   ps up $(pgrep -f $@)
 }
+
+# Local npm path:
+#   https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 ## Local data: MUST BE LAST!!!
 if [[ -e ~/.zsh/local ]]
