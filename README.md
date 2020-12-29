@@ -14,5 +14,5 @@ There is literally nothing to see here…
 Run in order:
 
 + On one host: `git submodule update --init --recursive --remote`
-+ On the same host `git commit -am "Updated sub modules." && git push'
++ On the same host `git commit -am "chore(git): Updated sub modules" && git push'
 + Then on all other hosts: `git up && git submodule update`
