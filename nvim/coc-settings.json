@@ -25,11 +25,16 @@
 		"folder": "\uf114"
 	},
 
-    "python.jediEnabled": true,
-    "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
+    "python.jediEnabled": true,
+
+    "python.linting.pylintEnabled": true,
     "python.linting.pylintPath": "~/.pyenv/shims/pylint",
+    "python.linting.pylintUseMinimalCheckers": false,
+
     "python.sortImports.path": "/Users/esn89/Library/Python/3.7/bin/isort",
+
+    "python.formatting.provider": "black",
 
     "yaml.schemas": {
         "kubernetes": "/*.yaml"
@@ -38,12 +43,5 @@
 	"yaml.validate": true,
 	"yaml.completion": true,
 	"yaml.format.enable": true,
-
-    "yaml.completion": true,
-    "yaml.hover": true,
-    "yaml.schemas": {
-        "kubernetes": ["/kubernetes/*.yaml"]
-    },
-    "yaml.validate": true
-
+    "yaml.hover": true
 }
