@@ -76,14 +76,17 @@ source $HOME/.zsh/python_virtual_env.zsh
 PROMPT='%(?.%F{green}√.%F{red}✗ %?)%f $(virtualenv_prompt_info)$(git_super_status)%{[38;5;24m%};%{[0m%} '
 
 # PROMPT='%(?.%F{green}√.%F{red}✗ %?)%f %B%F{240}%1~%f%b %B%F{red}%#%f%b '
+export TERM=tmux-256color
+precmd () { print -Pn "\e]0;%n@%m: %~\a" }
+preexec () { print -Pn "\e]0;%n@%m: $1\a" }
 
-if [[ ${TERM} == "screen-256color" ]]; then
-  precmd () { print -Pn "\033k\033\134\033k%1d\033\134" }
-  preexec () { print -Pn "\033k\033\134\033k$1\033\134" }
-else
-  precmd () { print -Pn "\e]0;%n@%m: %~\a" }
-  preexec () { print -Pn "\e]0;%n@%m: $1\a" }
-fi
+# if [[ ${TERM} == "xterm-256color" ]]; then
+#   precmd () { print -Pn "\033k\033\134\033k%1d\033\134" }
+#   preexec () { print -Pn "\033k\033\134\033k$1\033\134" }
+# else
+#   precmd () { print -Pn "\e]0;%n@%m: %~\a" }
+#   preexec () { print -Pn "\e]0;%n@%m: $1\a" }
+# fi
 
 ### Colours
 # eval `dircolors ~/.dircolors.256dark`
