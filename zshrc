@@ -177,3 +177,9 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 if [[ -e ~/.zsh/local ]]
 then source ~/.zsh/local
 fi
+
+if whence -cp terraform > /dev/null 2>&1 
+then
+    autoload -U +X bashcompinit && bashcompinit
+    complete -o nospace -C /usr/bin/terraform terraform
+fi
