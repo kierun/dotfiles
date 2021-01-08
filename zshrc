@@ -137,7 +137,8 @@ alias rmpyc="find . -regex '.*\.pyc$' -delete"
 alias grep="grep -n --colour=auto"
 alias clean='rm -rf ./build ./*.egg-info *.link_built *.whl **/*.pyc'
 # alias apg='apg -m 23 -a 0 -t -M NCSL' NO LONGER SECURE!!!
-alias apg='pwgen -c -n -y  23 3'
+alias apg='pwgen -c -n -y 32 6'
+alias pwgen='pwgen -c -n -y 32 6'
 alias rcp='rsync --archive --compress --progress'
 alias scp='echo "Use rcp"'
 
