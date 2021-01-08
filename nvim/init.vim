@@ -87,6 +87,9 @@ Plug 'lervag/vimtex'
 " Flutter / Dart: https://github.com/dart-lang/dart-vim-plugin
 Plug 'dart-lang/dart-vim-plugin'
 
+" Asciidoctor
+Plug 'habamax/vim-asciidoctor'
+
 " Initialize plugin system
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -265,6 +268,41 @@ let g:SimpylFold_docstring_preview = 1
 " -▼-
 autocmd FileType tex setlocal ts=2 sts=2 sw=2 expandtab
 let g:tex_flavor = 'latex'
+" -▲-
+
+" Configure asciidoctor
+" -▼-
+autocmd FileType ascidoc setlocal tw=78
+
+" Fold sections, default `0`.
+let g:asciidoctor_folding = 1
+
+" Fold options, default `0`.
+let g:asciidoctor_fold_options = 1
+
+" List of filetypes to highlight, default `[]`
+let g:asciidoctor_fenced_languages = ['python', 'c']
+
+" Function to create buffer local mappings and add default compiler
+fun! AsciidoctorMappings()
+    nnoremap <buffer> <leader>oo :AsciidoctorOpenRAW<CR>
+    nnoremap <buffer> <leader>op :AsciidoctorOpenPDF<CR>
+    nnoremap <buffer> <leader>oh :AsciidoctorOpenHTML<CR>
+    nnoremap <buffer> <leader>ox :AsciidoctorOpenDOCX<CR>
+    nnoremap <buffer> <leader>ch :Asciidoctor2HTML<CR>
+    nnoremap <buffer> <leader>cp :Asciidoctor2PDF<CR>
+    nnoremap <buffer> <leader>cx :Asciidoctor2DOCX<CR>
+    nnoremap <buffer> <leader>p :AsciidoctorPasteImage<CR>
+    " :make will build pdfs
+    compiler asciidoctor2pdf
+endfun
+
+" Call AsciidoctorMappings for all `*.adoc` and `*.asciidoc` files
+augroup asciidoctor
+    au!
+    au BufEnter *.adoc,*.asciidoc call AsciidoctorMappings()
+augroup END
+
 " -▲-
 
 " In English et en Français.
