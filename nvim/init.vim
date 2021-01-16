@@ -90,6 +90,9 @@ Plug 'dart-lang/dart-vim-plugin'
 " Asciidoctor
 Plug 'habamax/vim-asciidoctor'
 
+" https://github.com/hashivim/vim-terraform
+Plug 'hashivim/vim-terraform'
+
 " Initialize plugin system
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -272,8 +275,6 @@ let g:tex_flavor = 'latex'
 
 " Configure asciidoctor
 " -▼-
-autocmd FileType ascidoc setlocal tw=78
-
 " Fold sections, default `0`.
 let g:asciidoctor_folding = 1
 
@@ -281,7 +282,7 @@ let g:asciidoctor_folding = 1
 let g:asciidoctor_fold_options = 1
 
 " List of filetypes to highlight, default `[]`
-let g:asciidoctor_fenced_languages = ['python', 'c']
+let g:asciidoctor_fenced_languages = ['python', 'c', 'bash']
 
 " Function to create buffer local mappings and add default compiler
 fun! AsciidoctorMappings()
@@ -303,6 +304,13 @@ augroup asciidoctor
     au BufEnter *.adoc,*.asciidoc call AsciidoctorMappings()
 augroup END
 
+" -▲-
+
+" Configure terraform
+" -▼-
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
 " -▲-
 
 " In English et en Français.
@@ -382,7 +390,7 @@ vnoremap <leader>g gqip
 " -▲-
 
 " Fixed width!
-autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit set textwidth=78
+autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit,asciidoctor set textwidth=78
 
 " No spelling on YAML & Docker files… I mean, really?
 autocmd FileType yaml set nospell
