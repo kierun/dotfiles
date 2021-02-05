@@ -1,2 +1,7 @@
 # Neovim stuff.
 nvim/.netrwhist
+nvim/plugged
+nvim/autoload
+
+# Backups.
+**/*.bak

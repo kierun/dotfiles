@@ -1,14 +1,6 @@
-" Neovim configuration.
+" Neovim configuration
 "
-"   :checkhealth 
-
-" Python
-let g:python_host_prog="/home/yann/.pyenv/versions/neovim-2.7.5/bin/python"
-if exists("$VIRTUAL_ENV")
-    let g:python3_host_prog=substitute(system("which -a python3 | head -n2 | tail -n1"), "\n", '', 'g')
-else
-    let g:python3_host_prog=substitute(system("which python3"), "\n", '', 'g')
-endif
+"   :checkhealth
 
 " Folding
 "   https://jdhao.github.io/2019/08/16/nvim_config_folding/
@@ -18,7 +10,35 @@ set foldmethod=marker
 set foldmarker=-▼-,-▲-  " … Because who does not love silly UTF-8⸮
 " -▲-
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"---- vim-plug setup  ----
+" -▼-
+let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+if has('win32')&&!has('win64')
+  let curl_exists=expand('C:\Windows\Sysnative\curl.exe')
+else
+  let curl_exists=expand('curl')
+endif
+
+if !filereadable(vimplug_exists)
+  if !executable(curl_exists)
+    echoerr "You have to install curl or first install vim-plug yourself!"
+    execute "q!"
+  endif
+  echo "Installing Vim-Plug..."
+  echo ""
+  silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  let g:not_finish_vimplug = "yes"
+
+  autocmd VimEnter * PlugInstall
+endif
+" -▲-
+
+set nocompatible
+
+" Set leader.
+let mapleader=','
+
+
 " Vim plug: https://github.com/junegunn/vim-plug
 " -▼-
 " Specify a directory for plugins
@@ -28,17 +48,16 @@ set foldmarker=-▼-,-▲-  " … Because who does not love silly UTF-8⸮
 " Run :PlugInstall to install plugins
 " Run :PlugUpdate to update the plugins
 "
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
+
+" Sensible default 
+Plug 'tpope/vim-sensible'
 
 " Vim airline: https://github.com/vim-airline/vim-airline
 Plug 'vim-airline/vim-airline'
 
 " Vim airline theme: https://github.com/vim-airline/vim-airline-themes
 Plug 'vim-airline/vim-airline-themes'
-
-" Conquer of Completions: https://github.com/neoclide/coc.nvim
-"   Do NOT use CoC-go, instead use vim-go see below.
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " NERDTree: https://github.com/preservim/nerdtree
 Plug 'preservim/nerdtree'
@@ -66,9 +85,6 @@ Plug 'airblade/vim-gitgutter'
 " Opening a file in a given line: https://github.com/bogado/file-line
 Plug 'bogado/file-line'
 
-" Go support.
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " Go debugger: delve.
 Plug 'sebdah/vim-delve'
 
@@ -93,54 +109,26 @@ Plug 'habamax/vim-asciidoctor'
 " https://github.com/hashivim/vim-terraform
 Plug 'hashivim/vim-terraform'
 
-" Initialize plugin system
+" Native LSP.
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
+" https://github.com/nvim-treesitter/nvim-treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
 call plug#end()
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -▲-
 
-" Colours.
-"colorscheme neverness
-
-" https://medium.com/@dnrvs/per-project-settings-in-nvim-fc8c8877d970
-" This allows me to have added per project configuration files.
-" This is super useful for vimwiki…
-set exrc
-set secure
-
-" Syntax always on.
-filetype plugin indent on
-syntax on
-
-" Set leader.
-let mapleader=','
-
-" Various commands.
-"set cursorcolumn
-"set cursorline
-set laststatus=2
-set mouse=a
-set shiftwidth=4
-
-" tab, because they are the devil's work!
+" Automatically install missing plugins on startup
 " -▼-
-set expandtab
-autocmd FileType go set noexpandtab
-set shiftwidth=4
-set smarttab
-set softtabstop=0 
-set tabstop=4
-" -▲-
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 
-"Configure airline.
-" -▼-
-let g:airline_detect_spell=1
-let g:airline_powerline_fonts = 1
-"let g:airline_theme='molokai'
-let g:airline_theme='nord'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let airline#extensions#tabline#middle_click_preserves_windows = 1
+if has('termguicolors')
+  set termguicolors
+endif
 " -▲-
 
 " Configure Nord theme.
@@ -150,57 +138,17 @@ let g:nord_italic_comments = 1
 
 " This makes airline load.
 colorscheme nord
-"augroup nord-theme-overrides
-"  autocmd!
-"  " Use 'nord7' as foreground color for Vim comment titles.
-"  autocmd ColorScheme nord let s:nord1_term = "4"
-"augroup END
-" User my colours.
-"colorscheme neverness
 " -▲-
 
-" Configure Conquer of Completions.
+"Configure airline.
 " -▼-
-let g:coc_global_extensions = [
-      \ "coc-json",
-      \ "coc-markdownlint",
-      \ "coc-python",
-      \ "coc-yaml" ]
-
-"      \ "coc-clangd",
-"      \ "coc-css",
-"      \ "coc-flutter",
-"      \ "coc-git",
-"      \ "coc-html",
-"      \ "coc-json",
-"      \ "coc-markdownlint",
-"      \ "coc-pyright",
-"      \ "coc-python",
-"      \ "coc-texlab",
-"      \ "coc-yaml" ] 
-"
-"      \ "coc-go",  This is SHIT!
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
+let g:airline_detect_spell=1
+let g:airline_powerline_fonts = 1
+let g:airline_theme='nord'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let airline#extensions#tabline#middle_click_preserves_windows = 1
 " -▲-
 
 " Configure easy align.
@@ -209,50 +157,13 @@ endfunction
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+" -▲-
 
 " Configure NERDTree.
+" -▼-
 let NERDTreeHijackNetrw = 0
 let NERDChristmasTree = 1
 nmap <F4> :NERDTreeToggle<CR>
-" -▲-
-
-" Configure vim-go
-" -▼-
-
-au! BufNewFile,BufRead *.go set foldmethod=syntax
-
-let g:go_fmt_experimental = 1  " https://github.com/fatih/vim-go/issues/502
-
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_addtags_transform = "camelcase"
-
-let g:go_highlight_fields = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-
-let g:go_doc_popup_window = 1
-
-let g:go_auto_type_info = 1
-
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
-autocmd FileType go nmap <Leader>i <Plug>(go-info)
-let g:go_auto_type_info = 1
-
-" Play nice with coc_go?
-" https://github.com/fatih/vim-go/issues/2760
-" https://github.com/josa42/coc-go/issues/76#issuecomment-659947017
-let g:go_gopls_enabled = 1
-let g:go_gopls_options = ['-remote=auto', '-rpc.trace']
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
-let g:go_referrers_mode = 'gopls'
-
 " -▲-
 
 " Configure vimwiki.
@@ -313,6 +224,7 @@ let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 " -▲-
 
+
 " In English et en Français.
 " -▼-
 set spell
@@ -366,6 +278,12 @@ map! ;6 ☣
 map! ;7 ☠
 " -▲-
 
+" Format.
+" -▼-
+nnoremap <leader>g gqip
+vnoremap <leader>g gqip
+" -▲-
+
 " Copy and paste.
 " -▼-
 vmap <LeftRelease> "*ygv
@@ -383,21 +301,123 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 " -▲-
 
-" Format.
-" -▼-
-nnoremap <leader>g gqip
-vnoremap <leader>g gqip
-" -▲-
-
 " Fixed width!
 autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit,asciidoctor set textwidth=78
 
 " No spelling on YAML & Docker files… I mean, really?
 autocmd FileType yaml set nospell
 autocmd FileType dockerfile set nospell
+
 " Stupid tabs.
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Auto save: http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 au FocusLost * :wa
 set autowriteall
+
+let g:edge_style = 'aura'
+let g:edge_enable_italic = 1
+let g:edge_disable_italic_comment = 1
+colorscheme nord
+
+syntax enable
+filetype plugin indent on
+
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set expandtab
+set smartindent
+set ts=4 sts=4 sw=4
+set cmdheight=1
+set updatetime=50
+set signcolumn=yes
+set mouse=a
+
+augroup highlight_yank
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+augroup END
+
+" LUA LSP
+"   https://github.com/neovim/nvim-lspconfig/blob/master/README.md#keybindings-and-completion
+" -▼-
+:lua << EOF
+  local nvim_lsp = require('lspconfig')
+
+  local on_attach = function(client, bufnr)
+    require('completion').on_attach()
+
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+    -- Set some keybinds conditional on server capabilities
+    if client.resolved_capabilities.document_formatting then
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    elseif client.resolved_capabilities.document_range_formatting then
+        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    end
+
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec([[
+          hi LspReferenceRead cterm=bold ctermbg=red guibg=black
+          hi LspReferenceText cterm=bold ctermbg=red guibg=black
+          hi LspReferenceWrite cterm=bold ctermbg=red guibg=black
+          augroup lsp_document_highlight
+            autocmd!
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          augroup END
+        ]], false)
+    end
+  end
+
+  local servers = {'pyright', 'gopls', 'rust_analyzer'}
+  -- for _, lsp in ipairs(servers) do
+  --   nvim_lsp[lsp].setup {
+  --     on_attach = on_attach,
+  --   }
+  -- end
+  for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+EOF
+
+" Completion
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" -▲-
+
+" Tree sitter.
+" -▼-
+:lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,  -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+}
+EOF
+" -▲-
