@@ -21,6 +21,8 @@ GuiFont! PragmataPro Nerd Font Mono:h9
 GuiTabline 0
 "GuiRenderLigature 1
 
+GuiPopupmenu 0
+
 "
 if @% == ""
   bd
