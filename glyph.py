@@ -22,16 +22,17 @@ lst = [u"\u263A",       # ☺
        u"\u2623",       # ☣ Biohazard
        u"死",           # Death / shi
        u"隻狼",         # One Armed Wolf / Sekirom
-       "¯\_(ツ)_/¯",    # shrugs.
+       u"\u26E9"        # Tori gate.
        u"gå agurk",     # to run amok, to go berserk, lit. “to go cucumber”.
        u"\u2234"        # ∴, Therefore.
+       "    ¯\_(ツ)_/¯",    # shrugs.
        ]
 count = 0
 for x in range(0, len(lst)):
     print(u'{cha:{fill}{align}{width}}'.format(cha=lst[x], fill=' ',
-        align='<', width=10), end="")
+        align='<', width=12), end="")
     count += 1
-    if count > 5:
+    if count > 4:
         print("")
         count = 0
 print("")
