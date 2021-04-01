@@ -119,6 +119,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 " https://github.com/hrsh7th/nvim-compe
 Plug 'hrsh7th/nvim-compe'
 
+" https://github.com/ChristianChiarulli/nvcode-color-schemes.vim
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
+
 " This is the end, my only friend, the end.
 call plug#end()
 " -▲-
@@ -142,6 +145,18 @@ let g:nord_italic_comments = 1
 
 " This makes airline load.
 colorscheme nord
+" -▲-
+
+" configure nvcode-color-schemess
+" -▼-
+"let g:nvcode_termcolors=256
+"syntax on
+"colorscheme nord " Or whatever colorscheme you make
+"" checks if your terminal has 24-bit color support
+"if (has("termguicolors"))
+"    set termguicolors
+"    hi LineNr ctermbg=NONE guibg=NONE
+"endif
 " -▲-
 
 "Configure airline.
@@ -343,8 +358,7 @@ vnoremap <leader>P "+P
 autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit,asciidoctor set textwidth=78
 
 " No spelling on YAML & Docker files… I mean, really?
-autocmd FileType yaml set nospell
-autocmd FileType dockerfile set nospell
+autocmd FileType go,c,cpp,python,yaml,dockerfile set nospell
 
 " Stupid tabs.
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
