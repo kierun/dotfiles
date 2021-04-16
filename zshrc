@@ -122,25 +122,24 @@ limit core 1024M
 #editline() { gvim ${1%%:*} +${1##*:}; }
 
 ### Aliases
-alias ls='/bin/ls -bsFhv --color'
-alias tree='lsd --tree -A'
-alias sb='source $HOME/.bashrc'
-alias cal="cal -e -f"
-alias pyl="pylint -f colorized -r n"
-#alias gvim="gvim -geom 83x24 -p"
-alias nmz='neomutt -Z || true'
-alias nmy='neomutt -y'
-alias nms='neomutt -f $HOME/Maildir/.spam'
-alias rmpassed="find . -regex '.*\.passed$' -delete"
-alias rmcore="find . -regex '.*core\.[0-9]*' -delete"
-alias rmpyc="find . -regex '.*\.pyc$' -delete"
-alias grep="grep -n --colour=auto"
-alias clean='rm -rf ./build ./*.egg-info *.link_built *.whl **/*.pyc'
-# alias apg='apg -m 23 -a 0 -t -M NCSL' NO LONGER SECURE!!!
+if [[ (( $+commands[ls] )) ]]; then
+    alias ls='lsd -F --icon-theme fancy'
+    alias tree='lsd --tree -A'
+else
+    alias ls='/bin/ls -bsFhv --color'
+fi
+if [[ (( $+commands[bat] )) ]]; then
+    alias cat='bat'
+fi
+
 alias apg='pwgen -c -n -y 32 6'
+alias nms='neomutt -f $HOME/Maildir/.spam'
+alias nmy='neomutt -y'
+alias nmz='neomutt -Z || true'
 alias pwgen='pwgen -c -n -y 32 6'
 alias rcp='rsync --archive --compress --progress'
-alias scp='echo "Use rcp"'
+alias rmpyc="find . -regex '.*\.pyc$' -delete"
+alias scp='rsync --archive --compress --progress'
 
 ## Function to start tmux
 mux () {tmux -2 new -s $1 || tmux attach -t $1}
