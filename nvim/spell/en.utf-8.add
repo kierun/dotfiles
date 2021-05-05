@@ -130,3 +130,11 @@ Metrology
 Playfair
 blockchains
 blockchain
+nginx
+Adminer
+pre-commit
+pre-commit-golang
+gitlint
+gocyclo
+gocritic
+richgo
