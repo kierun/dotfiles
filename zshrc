@@ -12,23 +12,21 @@ zstyle :compinstall filename '/home/ygolanski/.zshrc'
 # Home brew.
 export PATH=~/bin:\
 ~/.local/bin:\
-~/staging/bin:\
 ~/.cargo/bin:\
 /usr/local/bin:\
 /usr/local/sbin:\
 /usr/bin:\
 /usr/sbin:\
 /bin:\
-/sbin:\
-/usr/lib/qt-3.3/bin:\
-/usr/kerberos/sbin:\
-/usr/kerberos/bin:\
-/usr/lib/ccache
+/sbin
 
 # Completion.
 fpath+=~/.zfunc
 autoload -Uz compinit
 compinit -i
+
+# Stupid GO and ./...
+alias golint='nocorrect golint'
 
 # End of lines added by compinstall
 #
