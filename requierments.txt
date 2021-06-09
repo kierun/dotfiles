@@ -22,16 +22,11 @@ pydeps
 pydocstyle
 pyflakes
 pylint
-pyls-black
-pyls-isort
-pyls-mypy
 pysnooper
 pytest
 pytest-cov
 pytest-sugar
 pytest-xdist
-python-language-server
-python-language-server[all]
 rich
 rope
 stevedore
