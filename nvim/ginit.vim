@@ -1,6 +1,6 @@
 " Command specific to running a GUI.
 set number
-set colorcolumn=81
+"set colorcolumn=81
 set ruler
 
 function! IsOnSomeParticularMachine(hostname)
@@ -13,17 +13,13 @@ endfunction
 " else
 "     GuiFont! PragmataPro Nerd Font Mono:h9
 " endif
-GuiFont! PragmataPro Nerd Font Mono:h9
-"
-" GuiFont! VictorMono Nerd Font Mono:h9
+"GuiFont! PragmataPro Nerd Font Mono:h9
+GuiFont! EssentialPragmataPro Nerd Font:h9
 
-" No ugly tab line in windows!
 GuiTabline 0
-"GuiRenderLigature 1
-
 GuiPopupmenu 0
+GuiRenderLigature 1
 
-"
 if @% == ""
   bd
 endif

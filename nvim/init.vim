@@ -38,7 +38,6 @@ set nocompatible
 " Set leader.
 let mapleader=','
 
-
 " Vim plug: https://github.com/junegunn/vim-plug
 " -▼-
 " Specify a directory for plugins
@@ -53,11 +52,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Sensible default 
 Plug 'tpope/vim-sensible'
 
-" Vim airline: https://github.com/vim-airline/vim-airline
-Plug 'vim-airline/vim-airline'
-
-" Vim airline theme: https://github.com/vim-airline/vim-airline-themes
-Plug 'vim-airline/vim-airline-themes'
+" Lualine: https://github.com/hoob3rt/lualine.nvim
+Plug 'hoob3rt/lualine.nvim'
 
 " NERDTree: https://github.com/preservim/nerdtree
 Plug 'preservim/nerdtree'
@@ -70,8 +66,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ryanoasis/vim-devicons'
 
 " FZF: https://github.com/junegunn/fzf.vim
-Plug 'junegunn/fzf', { 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': './install --bin' }
+" Plug 'junegunn/fzf.vim'
 
 " Vim syntax for TOML: https://github.com/cespare/vim-toml
 Plug 'cespare/vim-toml'
@@ -92,7 +88,10 @@ Plug 'sebdah/vim-delve'
 Plug 'vimwiki/vimwiki'
 
 " Nord theme: https://github.com/arcticicestudio/nord-vim
-Plug 'arcticicestudio/nord-vim'
+"Plug 'arcticicestudio/nord-vim'
+
+" Nord treesitter theme: https://github.com/shaunsingh/nord.nvim
+Plug 'shaunsingh/nord.nvim'
 
 " Python folding: https://github.com/tmhedberg/SimpylFold
 Plug 'tmhedberg/SimpylFold'
@@ -106,21 +105,38 @@ Plug 'dart-lang/dart-vim-plugin'
 " Asciidoctor
 Plug 'habamax/vim-asciidoctor'
 
-" https://github.com/hashivim/vim-terraform
+" Terraform: https://github.com/hashivim/vim-terraform
 Plug 'hashivim/vim-terraform'
 
 " Native LSP.
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 
-" https://github.com/nvim-treesitter/nvim-treesitter
+" Treersitter: https://github.com/nvim-treesitter/nvim-treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
-" https://github.com/hrsh7th/nvim-compe
+" Nvim compe: https://github.com/hrsh7th/nvim-compe
 Plug 'hrsh7th/nvim-compe'
 
 " https://github.com/ChristianChiarulli/nvcode-color-schemes.vim
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
+
+" Telescope: https://github.com/nvim-telescope/telescope.nvim
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" nvim-bufferline.lua: https://github.com/akinsho/nvim-bufferline.lua
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'akinsho/nvim-bufferline.lua'
+
+" vim-go: https://github.com/fatih/vim-go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" vim lsp settings: https://github.com/mattn/vim-lsp-settings
+" This is scary… Not for just now.
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'mattn/vim-lsp-settings'
 
 " This is the end, my only friend, the end.
 call plug#end()
@@ -161,13 +177,23 @@ colorscheme nord
 
 "Configure airline.
 " -▼-
-let g:airline_detect_spell=1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='nord'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let airline#extensions#tabline#middle_click_preserves_windows = 1
+"let g:airline_detect_spell=1
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme='nord'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#show_tabs = 1
+"let g:airline#extensions#tabline#show_buffers = 1
+"let airline#extensions#tabline#middle_click_preserves_windows = 1
+" -▲-
+
+"Configure lualine & Nord theme.
+" -▼-
+lua <<EOF
+require'lualine'.setup{
+  options = { theme  = 'nord' },
+}
+require('nord').set()
+EOF
 " -▲-
 
 " Configure easy align.
@@ -179,7 +205,7 @@ nmap ga <Plug>(EasyAlign)
 " -▲-
 
 " Configure NERDTree.
-" -▼-
+" -▼-app/server.go
 let NERDTreeHijackNetrw = 0
 let NERDChristmasTree = 1
 nmap <F4> :NERDTreeToggle<CR>
@@ -278,6 +304,44 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 " -▲-
 
+" Configure Telescope
+" -▼-
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" -▲-
+
+"Configure vim-go
+" -▼-
+" autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 foldmethod=syntax foldnestmax=1
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+let g:go_auto_type_info = 1
+let g:go_doc_popup_window = 1
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = "gopls"
+let g:go_fmt_experimental = 1  " https://github.com/fatih/vim-go/issues/502
+let g:go_fmt_fail_silently = 0
+let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_types = 1
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck', 'revive']
+" GOPLS horrors?
+" https://github.com/fatih/vim-go/issues/2760
+" https://github.com/josa42/coc-go/issues/76#issuecomment-659947017
+let g:go_gopls_enabled = 1
+let g:go_gopls_options = ['-remote=auto', '-rpc.trace']
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_referrers_mode = 'gopls'
+" -▲-
+
 " In English et en Français.
 " -▼-
 set spell
@@ -337,6 +401,32 @@ nnoremap <leader>g gqip
 vnoremap <leader>g gqip
 " -▲-
 
+" Bufferline.
+" -▼-
+lua <<EOF
+require('bufferline').setup {
+    options = {
+        max_name_length = 23,
+        max_prefix_length = 17,
+        diagnostics = "nvim_lsp",
+        diagnostics_indicator = function(count, level, diagnostics_dict)
+            return "("..count..")"
+        end,
+        offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "right"}},
+        diagnostics_indicator = function(_, _, diagnostics_dict)
+            local s = " "
+            for e, n in pairs(diagnostics_dict) do
+                local sym = e == "error" and " "
+                    or (e == "warning" and " " or "" )
+                s = s .. n .. sym
+            end
+            return s
+        end,
+    }
+}
+EOF
+" -▲-
+
 " Copy and paste.
 " -▼-
 vmap <LeftRelease> "*ygv
@@ -375,7 +465,6 @@ colorscheme nord
 syntax enable
 filetype plugin indent on
 
-"set completeopt=menuone,noinsert,noselect
 set completeopt=menu,menuone,noselect
 set shortmess+=c
 set expandtab
@@ -452,14 +541,40 @@ augroup END
   --   }
   -- end
   for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
-end
+    nvim_lsp[lsp].setup { on_attach = on_attach }
+  end
 EOF
+" -▲-
 
 " Completion
+" -▼-
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" -▲-
+
+" EFM LSP
+" https://github.com/mattn/efm-langserver
+" -▼-
+"lua << EOF
+"require "lspconfig".efm.setup {
+"    init_options = {documentFormatting = true},
+"}
+"EOF
+"lua << EOF
+"require "lspconfig".efm.setup { }
+"EOF
+" require "lspconfig".efm.setup {
+"     init_options = {documentFormatting = true},
+"     settings = {
+"         languages = {
+"             python = {
+"                 {formatCommand = "black --quiet -", formatStdin = true}
+"             },
+"         }
+"     }
+" }
+" EOF
 " -▲-
 
 " Tree sitter.
