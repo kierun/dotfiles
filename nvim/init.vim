@@ -448,10 +448,7 @@ vnoremap <leader>P "+P
 autocmd FileType text,mail,tex,xhtml,html,markdown,c,cpp,python,rst,gitcommit,asciidoctor set textwidth=78
 
 " No spelling on YAML & Docker files… I mean, really?
-autocmd FileType go,c,cpp,python,yaml,dockerfile set nospell
-
-" Stupid tabs.
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType go,c,cpp,python,yaml,dockerfile,vim set nospell
 
 " Auto save: http://vim.wikia.com/wiki/Auto_save_files_when_focus_is_lost
 au FocusLost * :wa
@@ -584,7 +581,8 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,  -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
+    disable = {"yaml", },  -- list of language that will be disabled
+    -- disable = {},  -- list of language that will be disabled
   },
 }
 EOF
