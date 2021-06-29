@@ -138,6 +138,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "Plug 'prabirshrestha/vim-lsp'
 "Plug 'mattn/vim-lsp-settings'
 
+" DAP
+" https://github.com/mfussenegger/nvim-dap
+" https://github.com/rcarriga/nvim-dap-ui
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+
 " This is the end, my only friend, the end.
 call plug#end()
 " -▲-
@@ -340,6 +346,49 @@ let g:go_gopls_options = ['-remote=auto', '-rpc.trace']
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_referrers_mode = 'gopls'
+" -▲-
+
+" Configure DAP
+" -▼-
+lua << EOF
+require("dapui").setup({
+  icons = {
+    expanded = "⯆",
+    collapsed = "⯈"
+  },
+  mappings = {
+    -- Use a table to apply multiple mappings
+    expand = {"<CR>", "<2-LeftMouse>"},
+    open = "o",
+    remove = "d",
+    edit = "e",
+  },
+  sidebar = {
+    open_on_start = true,
+    elements = {
+      -- You can change the order of elements in the sidebar
+      "scopes",
+      "breakpoints",
+      "stacks",
+      "watches"
+    },
+    width = 40,
+    position = "left" -- Can be "left" or "right"
+  },
+  tray = {
+    open_on_start = true,
+    elements = {
+      "repl"
+    },
+    height = 10,
+    position = "bottom" -- Can be "bottom" or "top"
+  },
+  floating = {
+    max_height = nil, -- These can be integers or a float between 0 and 1.
+    max_width = nil   -- Floats will be treated as percentage of your screen.
+  }
+})
+EOF
 " -▲-
 
 " In English et en Français.
